@@ -1,0 +1,19 @@
+<div class="ui small basic modal">
+    <div class="ui icon header">
+        <i class="{status} circle icon"></i>
+        {desc}
+    </div>
+    {!<div class="content">!}
+        {!<p>{desc}</p>!}
+    {!</div>!}
+    <div class="actions">
+        <div class="ui red deny basic inverted button">
+            <i class="remove icon"></i>
+            {denyButtonText}
+        </div>
+        <div class="ui green approve basic inverted button">
+            <i class="checkmark icon"></i>
+            {confirmButtonText}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="ui modal">
+    <div class="header">{header}</div>
+    <div class="content">
+        <form class="ui form" action="{action}" method="{method}" id="{formId}">
+            {!<h4 class="ui dividing header">门店基本信息</h4>!}
+            <div class="field">
+                <label>教室名称</label>
+                <input type="text" name="name" placeholder="请输入教室名称" value="{name}">
+            </div>
+            <div class="field">
+                <label>所属门店</label>
+                <select name="store_id" class="ui fluid dropdown">
+                    {#stores}
+                        <option value="{id}">{name}</option>
+                    {/stores}
+                </select>
+            </div>
+            <div class="field">
+                <label>描述</label>
+                <textarea name="description">{description}</textarea>
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <div class="ui blue approve button">{saveText}</div>
+        <div class="ui deny button">取 消</div>
+    </div>
+</div>

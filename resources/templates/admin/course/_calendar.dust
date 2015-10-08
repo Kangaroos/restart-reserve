@@ -1,0 +1,19 @@
+<div id="{modalId}" class="ui modal">
+    <div class="header">{header}</div>
+    <div class="content">
+        <div class="ui grid">
+            <div class="row">
+                <div class="three wide column">
+                    123
+                </div>
+                <div class="thirteen wide column">
+                    345
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui deny button">{backText}</div>
+        <div class="ui blue approve button">{saveText}</div>
+    </div>
+</div>
