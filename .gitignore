@@ -5,3 +5,4 @@ Homestead.json
 .env
 *.lock
 /.idea
+.DS_Store
