@@ -8,32 +8,28 @@
 
 * 下载phpstorm, 配置xdebug 请先配置完php运行环境后,查看百度/google教程
 
-```bash
+```Bash
 brew install php56 php56-mcrypt php56-xdebug openssl mariadb nginx composer
 ```
 
 * 创建服务脚本
 
-```bash
-
+```Bash
 sudo cp -v /usr/local/opt/nginx/*.plist /Library/LaunchDaemons/
 sudo chown root:wheel /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
-
 mkdir -p ~/Library/LaunchAgents
 ln -sfv /usr/local/opt/php56/homebrew.mxcl.php56.plist ~/Library/LaunchAgents/
-
 ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
-
 ```
 * 编辑nginx.conf文件
 
-```bash
+```Bash
 vi /usr/local/etc/nginx/nginx.conf
 ```
 
 * 我的 nginx.conf 配置,供参考
 
-```
+```nginx
 user root owner;
 worker_processes  1;
 
@@ -66,7 +62,7 @@ http {
 ```
 
 
-```bash
+```Bash
 mkdir /usr/local/etc/nginx/sites-available
 mkdir /usr/local/etc/nginx/sites-enabled
 vi /usr/local/etc/nging/sites-available/default
@@ -130,13 +126,13 @@ server {
 
 ```
 
-```bash
+```Bash
 sudo ln -s /usr/local/etc/nginx/sites-available/default /usr/local/etc/nginx/sites-enabled/default
 ```
 
 * 创建服务启动/关闭别名文件
 
-```bash
+```Bash
 vi ~/.bash_aliases
 ```
 
@@ -155,13 +151,13 @@ alias nginx.logs.default.access='tail -250f /usr/local/etc/nginx/logs/default.ac
 ```
 * 添加 .bash_aliases 至你的 .profile
 
-```bash
-echo "source ~/.bash_aliases" >> ~/.profile
+```Bash
+echo "source ~/.base_aliases" >> ~/.profile
 ```
 
 * 启动/停止 nginx, php-fpm, mariadb ,查看nginx日志命令
 
-```bash
+```Bash
 nginx.start
 nginx.stop
 nginx.restart
@@ -185,7 +181,7 @@ nginx.logs.error
 
 * 下载项目代码
 
-```bash
+```Bash
 git clone https://github.com/Kangaroos/restart-reserve.git
 cd restart-reserve
 composer update
@@ -197,25 +193,23 @@ vi .env
 
 * 编辑.env文件,修改APP_KEY值(随机生成一串)与config/app.php中的APP_KEY(可修改)值保持相同即可,修改DB相关配置为你的数据库配置
 
-```bash
+```Bash
 cd restart-reserve/resources/assets/vendor
 git clone https://github.com/Semantic-Org/Semantic-UI.git
 ```
 
 * 新打开一个命令行
 
-```bash
+```Bash
 cd restart-reserve
 gulp build-semantic
 gulp watch-semantic
-
 ```
 
 * 另外再打开一个命令行
-```bash
+```Bash
 cd restart-reserve
 gulp
-
 ```
 
 * 启动nginx,php-fpm,mariadb,访问http://localhost 查看是否部署成功,开始开发
