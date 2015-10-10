@@ -183,6 +183,7 @@ nginx.logs.error
 
 ```Bash
 git clone https://github.com/Kangaroos/restart-reserve.git
+chmod -R 777 restart-reserve/
 cd restart-reserve
 composer update
 npm install
