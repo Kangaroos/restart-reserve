@@ -23,13 +23,13 @@ module.exports = options = {
     },
     module: {
         loaders: [
-            {test: /\.dust$/, loader: "dust-loader"},
+            {test: /\.dust$/, loader: "dust"},
             {test: /\.css$/, loader: "style!css"},
             {
                 test: /\.scss$/, loaders: [
-                "style-loader",
-                "css-loader?" + (config.minimize === false ? "-" : "+") + "minimize",
-                "sass-loader?includePaths[]=" + require('path').resolve(__dirname, "./node_modules/bourbon-neat/app/assets/stylesheets/") + "&includePaths[]=" + require('path').resolve(__dirname, "./node_modules/bourbon/app/assets/stylesheets/"),
+                "style",
+                "css?" + (config.minimize === false ? "-" : "+") + "minimize",
+                "sass?includePaths[]=" + require('path').resolve(__dirname, "./node_modules/bourbon-neat/app/assets/stylesheets/") + "&includePaths[]=" + require('path').resolve(__dirname, "./node_modules/bourbon/app/assets/stylesheets/"),
             ]
             },
             {test: /\.svg(\#.*)?$/, loader: "url?limit=1"},
@@ -45,7 +45,7 @@ module.exports = options = {
     },
     debug: true,
     resolve: {
-        modulesDirectories: ["node_modules", "resources/assets", "resources/templates"]
+        modulesDirectories: ["resources/assets", "resources/templates", "node_modules"]
     },
     externals: {
         "jquery": "jQuery",

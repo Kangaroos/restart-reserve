@@ -185,7 +185,7 @@ nginx.logs.error
 git clone https://github.com/Kangaroos/restart-reserve.git
 chmod -R 777 restart-reserve/
 cd restart-reserve
-composer update
+composer install
 npm install
 php artisan migrate
 cp .env.example .env
@@ -196,7 +196,9 @@ vi .env
 
 ```Bash
 cd restart-reserve/resources/assets/vendor
-git clone https://github.com/Semantic-Org/Semantic-UI.git
+git clone https://github.com/Kangaroos/Semantic-UI.git
+cd Semantic-UI
+npm install
 ```
 
 * 新打开一个命令行

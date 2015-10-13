@@ -15,6 +15,9 @@ use App\FileEntry;
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::group(['prefix' => '/'], function () {
+    Route::resource('stores', 'StoreController');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,7 +28,6 @@ Route::group(['prefix' => 'wechat'], function () {
         return 'Hello World';
     });
 });
-
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::get('stores/{id}/classrooms', 'StoreController@getClassroomsByID');
