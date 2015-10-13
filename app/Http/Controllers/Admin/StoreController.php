@@ -94,12 +94,12 @@ class StoreController extends Controller {
         $store = Store::findOrFail($id);
         $file = $request->file('cover');;
         $extension = $file->getClientOriginalExtension();
-        $filename = 'cover/'.$store->id.'/'.$file->getFilename().'.'.$extension;
+        $filename = 'stores/cover/'.$store->id.'/'.$file->getFilename().'.'.$extension;
         Storage::disk('local')->put($filename, File::get($file));
 
         $entry = FileEntry::findOrNew($store->file_entries_id);
         if($store->file_entries_id !== 0) {
-            Storage::delete($entry->filename);
+            Storage::disk('local')->delete($entry->filename);
         }
 
         $entry->mime = $file->getClientMimeType();
