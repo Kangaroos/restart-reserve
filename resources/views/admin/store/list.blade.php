@@ -55,7 +55,7 @@
 
                                 <div class="tel">电话：{{ $store->mobile }}</div>
                             </div>
-                            <div class="description">{{ $store->description }}</div>
+                            <div class="description" title="{{ $store->description }}">{{ str_limit( $store->description, 200) }}</div>
                         </div>
                         <div class="extra content">
                             <span class="right floated">

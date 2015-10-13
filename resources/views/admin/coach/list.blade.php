@@ -35,7 +35,7 @@
         @foreach($coaches as $coach)
             <tr data-id="{{ $coach->id }}">
                 <td>{{ $coach->name }}</td>
-                <td>{{ $coach->description }}</td>
+                <td title="{{ $coach->description }}">{{ str_limit( $coach->description, 60) }}</td>
                 <td>{{ $coach->status }}</td>
                 <td>
                     <div data-id="editCoachBtn" class="ui blue button">编 辑</div>

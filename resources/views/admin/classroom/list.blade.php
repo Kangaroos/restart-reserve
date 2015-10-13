@@ -37,7 +37,7 @@
             <tr data-id="{{ $classroom->id }}">
                 <td>{{ $classroom->name }}</td>
                 <td>{{ $classroom->store->name }}</td>
-                <td>{{ $classroom->description }}</td>
+                <td title="{{ $classroom->description }}">{{ str_limit( $classroom->description, 60) }}</td>
                 <td>{{ $classroom->status }}</td>
                 <td>
                     <div data-id="editClassroomBtn" class="ui blue button">编 辑</div>

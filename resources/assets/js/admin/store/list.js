@@ -8,7 +8,6 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
 
     function formValid($form) {
         $form.form({
-            on: 'blur',
             fields: {
                 name: {
                     identifier: 'name',
