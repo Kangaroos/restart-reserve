@@ -40,6 +40,7 @@
         $script([
             '//cdn.bootcss.com/moment.js/2.10.6/locale/zh-cn.js'
             ,'//cdn.bootcss.com/dustjs-helpers/1.7.3/dust-helpers.min.js'
+            ,'{{ asset('assets/webpack/mobile/mobile.js')  }}'
         ], 'bundle');
     });
 </script>

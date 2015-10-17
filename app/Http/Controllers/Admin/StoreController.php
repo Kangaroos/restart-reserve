@@ -98,7 +98,7 @@ class StoreController extends Controller {
         Storage::disk('local')->put($filename, File::get($file));
 
         $entry = FileEntry::findOrNew($store->file_entries_id);
-        if($store->file_entries_id !== 0) {
+        if($store->file_entries_id != 0) {
             Storage::disk('local')->delete($entry->filename);
         }
 

@@ -17,16 +17,17 @@ use App\FileEntry;
 */
 Route::group(['prefix' => '/'], function () {
     Route::resource('stores', 'StoreController');
+    Route::get('stores/{id}/courses', ['as' => 'store.courses', 'uses' => 'CourseController@getCoursesByStoreId']);
+    Route::get('login', ['uses' => 'UserController@getLogin']);
+    Route::post('login', ['as' => 'login', 'uses' => 'UserController@postLogin']);
+    Route::get('members', ['uses' => 'UserController@getMembers']);
+    Route::get('members/reserve', ['uses' => 'UserController@getMembersReserve']);
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['uses' => 'StoreController@index']);
 
 Route::group(['prefix' => 'wechat'], function () {
-    Route::match(['get', 'post'], 'serve', function () {
-        return 'Hello World';
-    });
+    Route::match(['get', 'post'], 'serve', ['uses' => 'WechatController@serve']);
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
