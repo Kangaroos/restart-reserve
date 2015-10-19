@@ -9,6 +9,9 @@
 * 下载phpstorm, 配置xdebug 请先配置完php运行环境后,查看百度/google教程
 
 ```Bash
+brew update
+brew tap homebrew/dupes
+brew tap josegonzalez/homebrew-php
 brew install php56 php56-mcrypt php56-xdebug openssl mariadb nginx composer
 ```
 
