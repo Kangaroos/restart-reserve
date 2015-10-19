@@ -11,7 +11,8 @@
 ```Bash
 brew update
 brew tap homebrew/dupes
-brew tap josegonzalez/homebrew-php
+brew tap homebrew/versions
+brew tap homebrew/php
 brew install php56 php56-mcrypt php56-xdebug openssl mariadb nginx composer
 ```
 
@@ -219,4 +220,3 @@ gulp
 ```
 
 * 启动nginx,php-fpm,mariadb,访问http://localhost 查看是否部署成功,开始开发
-
