@@ -29,24 +29,52 @@
     <div class="courses">
         <span class="triangle"></span>
         <ul class="date-tab">
-            <li><a class="item">{{ $dates['today'] }}</a></li>
-            <li><a class="item active">{{ $dates['tomorrow'] }}</a></li>
-            <li><a class="item">{{ $dates['day_after_tomorrow'] }}</a></li>
+            <li><a class="item" data-class=".today">{{ $dates['today'] }}</a></li>
+            <li><a class="item active" data-class=".tomorrow">{{ $dates['tomorrow'] }}</a></li>
+            <li><a class="item" data-class=".day-after-tomorrow">{{ $dates['day_after_tomorrow'] }}</a></li>
         </ul>
         <div class="divider"></div>
-        <div class="course">
-            <span class="name">动感单车</span>
-            <span class="time">15:00-16:00</span>
+        <div class="today">
+            <div class="course">
+                <span class="name">动感单车1</span>
+                <span class="time">15:00-16:00</span>
             <span class="group">
-                <a class="button">详情</a>
+                <a class="button" href="#">详情</a>
                 <a class="button">预约</a>
             </span>
+            </div>
+            <div class="divider"></div>
         </div>
-        <div class="divider"></div>
+        <div class="tomorrow show">
+            <div class="course">
+                <span class="name">动感单车2</span>
+                <span class="time">15:00-16:00</span>
+            <span class="group">
+                <a class="button" href="#">详情</a>
+                <a class="button">预约</a>
+            </span>
+            </div>
+            <div class="divider"></div>
+        </div>
+        <div class="day-after-tomorrow">
+            <div class="course">
+                <span class="name">动感单车3</span>
+                <span class="time">15:00-16:00</span>
+            <span class="group">
+                <a class="button" href="#">详情</a>
+                <a class="button">预约</a>
+            </span>
+            </div>
+            <div class="divider"></div>
+        </div>
     </div>
 @endsection
 
 @section('end')
 @parent
-
+<script>
+    $script.ready('bundle', function(){
+        $script(['{{ asset('assets/webpack/mobile/courses.js')  }}']);
+    })
+</script>
 @endsection

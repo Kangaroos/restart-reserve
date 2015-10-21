@@ -283,6 +283,14 @@ body {
     }
   }
 
+  .today, .tomorrow, .day-after-tomorrow {
+    display: none;
+
+    &.show {
+      display: block;
+    }
+  }
+
   .course {
     height: 3.5rem;
     line-height: 3.5rem;
@@ -432,8 +440,8 @@ body {
   }
   ul {
     position: absolute;
-    top: 0.9375rem;
-    left: 1.25rem;
+    top: 1.25rem;
+    left: 3rem;
     list-style-type: none;
     li {
       color: #ffffff;
@@ -476,6 +484,76 @@ body {
         height: 2rem;
         background: url("../images/arrow-right-green-circle.png") no-repeat;
         background-size: cover;
+      }
+    }
+  }
+}
+
+.reserves {
+
+  .reserve {
+    position: relative;
+    border-radius: .5rem;
+    background: #e3e4e4;
+    margin: 1rem;
+    padding: 1rem 0 1rem 0;
+    .title {
+      height: 3em;
+      line-height: 3rem;
+      margin: 0 1rem 0 5rem;
+
+      h5 {
+        font-size: 1.125rem;
+        font-weight: normal;
+        margin: 0;
+      }
+
+      &.history {
+        h5 {
+          color: #afb0b0;
+        }
+      }
+
+      border-bottom: .125rem solid #9e9e9e;
+    }
+    .content {
+      color: #afb0b0;
+      font-size: 1.125rem;
+      height: 3rem;
+      line-height: 3rem;
+      margin: 0 1rem 0 5rem;
+
+      button {
+        display: inline-block;
+        overflow: hidden;
+        float: right;
+        color: #7ebf41;
+        padding: 0 em(10px) 0 em(10px);
+        margin: em(5px) 0 em(5px) 0;
+        height: em(32px);
+        line-height: em(32px);
+        background: transparent;
+        outline: none;
+        border: 1px solid #7ebf41;
+        border-radius: .3125rem;
+        &:disabled {
+          color: #9fa0a0;
+          border: 1px solid #9fa0a0;
+        }
+      }
+    }
+
+    .tag-status {
+      position: absolute;
+      left: .125rem;
+      top: -.5rem;
+      display: inline-block;
+      width: 4.375rem;
+      height: 3.625rem;
+      background-image: url("../images/new.png");
+      background-size: cover;
+      &.history {
+        background-image: url("../images/history.png");
       }
     }
   }

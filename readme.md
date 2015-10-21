@@ -220,3 +220,12 @@ gulp
 
 * 启动nginx,php-fpm,mariadb,访问http://localhost 查看是否部署成功,开始开发
 
+* 绑定微信开发联调，修改config/wechat.php 中的微信配置和你的测试账号一致
+
+* 执行创建微信菜单命令
+
+```Bash
+php artisan wechat:menu
+```
+* 输入 base url (你的localtunnel.me的地址) 创建微信菜单
+
