@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use Overtrue\Wechat\Server;
 use Overtrue\Wechat\Auth;
+use Overtrue\Wechat\Js;
 
 class WechatController extends Controller {
 
@@ -32,8 +33,6 @@ class WechatController extends Controller {
     public function demo(Auth $auth)
     {
         // $auth 则为容器中 Overtrue\Wechat\Auth 的实例
-
-
 
     }
 }

@@ -16,6 +16,8 @@ brew tap homebrew/php
 brew install php56 php56-mcrypt php56-xdebug openssl mariadb nginx composer
 ```
 
+* 修改 vi /usr/local/etc/php/5.6/php-fpm.conf，查找9000改成9001
+
 * 创建服务脚本
 
 ```Bash
@@ -25,6 +27,7 @@ mkdir -p ~/Library/LaunchAgents
 ln -sfv /usr/local/opt/php56/homebrew.mxcl.php56.plist ~/Library/LaunchAgents/
 ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
 ```
+
 * 编辑nginx.conf文件
 
 ```Bash
@@ -78,7 +81,7 @@ vi /usr/local/etc/nging/sites-available/default
 server {
         listen  80;
         server_name localhost;
-        set $root_path '{your path}/restart-reserve/public';
+        set $root_path '{你存放代码的路径}/restart-reserve/public';
         root $root_path;
 
         access_log  /usr/local/etc/nginx/logs/default.access.log  main;
@@ -156,7 +159,7 @@ alias nginx.logs.default.access='tail -250f /usr/local/etc/nginx/logs/default.ac
 * 添加 .bash_aliases 至你的 .profile
 
 ```Bash
-echo "source ~/.base_aliases" >> ~/.profile
+echo "source ~/.bash_aliases" >> ~/.profile
 ```
 
 * 启动/停止 nginx, php-fpm, mariadb ,查看nginx日志命令
@@ -196,7 +199,7 @@ cp .env.example .env
 vi .env
 ```
 
-* 编辑.env文件,修改APP_KEY值(随机生成一串)与config/app.php中的APP_KEY(可修改)值保持相同即可,修改DB相关配置为你的数据库配置
+* 编辑.env文件,修改APP_KEY值(随机生成一串), 修改DB相关配置为你的数据库配置
 
 ```Bash
 cd restart-reserve/resources/assets/vendor

@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => env('APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'locale' => 'zh-CN',
+    'locale' => env('APP_LOCALE', 'zh-CN'),
 
     /*
     |--------------------------------------------------------------------------
@@ -148,6 +148,8 @@ return [
         Overtrue\LaravelWechat\ServiceProvider::class,
         Kodeine\Acl\AclServiceProvider::class,
         Overtrue\LaravelLang\TranslationServiceProvider::class,
+
+        Toplan\Sms\SmsManagerServiceProvider::class,
     ],
 
     /*
@@ -198,6 +200,7 @@ return [
 
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'Wechat' => Overtrue\LaravelWechat\Facade::class,
+        'SmsManager' => Toplan\Sms\Facades\SmsManager::class,
     ],
 
 ];
