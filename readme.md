@@ -11,7 +11,8 @@
 ```Bash
 brew update
 brew tap homebrew/dupes
-brew tap josegonzalez/homebrew-php
+brew tap homebrew/versions
+brew tap homebrew/php
 brew install php56 php56-mcrypt php56-xdebug openssl mariadb nginx composer
 ```
 
