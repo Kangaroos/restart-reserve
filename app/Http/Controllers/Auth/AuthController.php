@@ -99,6 +99,7 @@ class AuthController extends Controller
     public function getLogout(Request $request) {
         Auth::logout();
         $request->session()->forget('openid');
+        $request->session()->flush();
         return redirect('/auth/login');
     }
 }
