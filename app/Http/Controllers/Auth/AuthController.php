@@ -66,7 +66,7 @@ class AuthController extends Controller
 
             $response['jwt-token'] = $token;
 
-            Auth::login($user);
+            Auth::login($user, true);
         } catch(ModelNotFoundException $e) {
             $values = [
                 'name' => $name,
@@ -90,7 +90,7 @@ class AuthController extends Controller
 
             $response['jwt-token'] = $token;
 
-            Auth::login($user);
+            Auth::login($user, true);
         }
 
         return response()->json($response);
