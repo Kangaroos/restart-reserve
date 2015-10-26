@@ -36,6 +36,7 @@ Route::group(['prefix' => '/members', 'middleware' => ['auth', 'acl'], 'is' => '
 
 Route::group(['prefix' => 'wechat'], function () {
     Route::match(['get', 'post'], 'serve', ['uses' => 'WechatController@serve']);
+    Route::get('callback', ['as' => 'wechat.callback', 'uses' => 'WechatController@callback']);
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['admin.auth', 'acl'], 'is' => 'administrator'], function() {

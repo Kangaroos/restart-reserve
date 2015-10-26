@@ -12,6 +12,10 @@ use Overtrue\Wechat\Server;
 use Overtrue\Wechat\Auth;
 use Overtrue\Wechat\Js;
 
+use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 class WechatController extends Controller {
 
     /**
@@ -28,5 +32,32 @@ class WechatController extends Controller {
         });
 
         return $server->serve(); // 或者 return $server;
+    }
+
+    //微信回调地址 /wechat/callback
+    public function callback(Request $request, Guard $auth, Auth $wxAuth) {
+        $redirectTo = $request->query('redirectTo', '/');
+        $profile = $wxAuth->user();
+        $data = $profile->all();
+        $user = $auth->user();
+        try {
+            $alias = $user->aliases()->where('provider', 'wechat')->where('type', 'openid')->firstOrFail();
+            if($data['openid'] != $alias->alias) {
+                return response('Forbidden.', 403);
+            } else {
+                $alias->data = $profile->toJson();
+                $alias->save();
+            }
+        } catch(ModelNotFoundException $e) {
+            $user->aliases()->create([
+                'user_id' => $user->id,
+                'provider' => 'wechat',
+                'alias' => $data['openid'],
+                'type' => 'openid',
+                'data' => $profile->toJson()
+            ]);
+        }
+        $request->session()->put('openid', $data['openid']);
+        return redirect(urlencode($redirectTo));
     }
 }
