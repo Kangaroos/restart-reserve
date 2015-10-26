@@ -58,6 +58,6 @@ class WechatController extends Controller {
             ]);
         }
         $request->session()->put('openid', $data['openid']);
-        return redirect(urlencode($redirectTo));
+        return redirect($redirectTo);
     }
 }
