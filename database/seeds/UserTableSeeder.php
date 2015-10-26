@@ -19,14 +19,7 @@ class UserTableSeeder extends Seeder
         $user = User::create([
             'name' => 'Admin',
             'mobile' => '18616022533',
-            'password' => bcrypt('admin')
-        ]);
-
-        $user->aliases()->create([
-            'user_id' => $user->id,
-            'provider' => 'system',
-            'alias' => '18616022533',
-            'type' => 'username'
+            'password' => bcrypt('123456')
         ]);
 
         $roleAdmin = Role::create([

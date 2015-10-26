@@ -80,14 +80,6 @@ class AuthController extends Controller
 
             $user = User::create($values);
 
-            $user->aliases()->create([
-                'user_id' => $user->id,
-                'provider' => 'system',
-                'alias' => $user->mobile,
-                'type' => 'username',
-                'data' => ''
-            ]);
-
             $roleMember = Role::where('name', 'Member')->first();
 
             $user->assignRole($roleMember);

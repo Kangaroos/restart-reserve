@@ -48,7 +48,7 @@
             <img src="{{ asset('assets/images/restart-logo.png') }}" alt="锐思达后台管理系统"/>
         </div>
         <div class="right menu">
-            <a class="ui item">
+            <a id="logoutAdminSystemBtn" href="{{ url('/admin/logout') }}" class="ui item">
                 登出
             </a>
         </div>

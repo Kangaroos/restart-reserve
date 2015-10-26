@@ -9,33 +9,15 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Authenticate
 {
-    /**
-     * The Guard implementation.
-     *
-     * @var Guard
-     */
     protected $auth;
     protected $weAuth;
 
-    /**
-     * Create a new filter instance.
-     *
-     * @param  Guard  $auth
-     * @return void
-     */
     public function __construct(Guard $auth, Auth $weAuth)
     {
         $this->auth = $auth;
         $this->weAuth = $weAuth;
     }
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
     public function handle($request, Closure $next)
     {
         if ($this->auth->guest()) {

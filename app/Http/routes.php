@@ -16,6 +16,8 @@ use App\FileEntry;
 |
 */
 
+Route::get('/', ['uses' => 'StoreController@index']);
+
 Route::group(['namespace' => 'Auth', 'prefix' => '/auth'], function () {
     Route::get('/login', 'AuthController@getLogin');
     Route::post('/login', ['as' => 'login', 'uses' => 'AuthController@postLogin']);
@@ -27,18 +29,16 @@ Route::group(['prefix' => '/'], function () {
     Route::get('stores/{id}/courses', ['as' => 'store.courses', 'uses' => 'CourseController@getCoursesByStoreId']);
 });
 
-Route::group(['prefix' => '/', 'middleware' => ['auth', 'acl'], 'is' => 'member|administrator'], function () {
-    Route::get('members', ['uses' => 'UserController@getMembers']);
-    Route::get('members/reserve', ['uses' => 'UserController@getMembersReserve']);
+Route::group(['prefix' => '/members', 'middleware' => ['auth', 'acl'], 'is' => 'member'], function () {
+    Route::get('', ['uses' => 'UserController@getMembers']);
+    Route::get('reserve', ['uses' => 'UserController@getMembersReserve']);
 });
-
-Route::get('/', ['uses' => 'StoreController@index']);
 
 Route::group(['prefix' => 'wechat'], function () {
     Route::match(['get', 'post'], 'serve', ['uses' => 'WechatController@serve']);
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'acl'], 'is' => 'administrator'], function() {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['admin.auth', 'acl'], 'is' => 'administrator'], function() {
     Route::get('stores/{id}/classrooms', 'StoreController@getClassroomsByID');
     Route::post('stores/cover/{id}', 'StoreController@updateCover');
     Route::resource('stores', 'StoreController');
@@ -50,6 +50,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 
 
 Route::controller('admin', 'AdminController');
+
 
 Route::get('file/{id}',['as' => 'getfile', function($id) {
     $entry = FileEntry::find($id);
