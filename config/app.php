@@ -150,6 +150,7 @@ return [
         Overtrue\LaravelLang\TranslationServiceProvider::class,
 
         Toplan\Sms\SmsManagerServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
     ],
 
     /*
@@ -201,6 +202,8 @@ return [
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'Wechat' => Overtrue\LaravelWechat\Facade::class,
         'SmsManager' => Toplan\Sms\Facades\SmsManager::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
     ],
 
 ];

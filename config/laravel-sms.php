@@ -79,7 +79,7 @@ return array(
 
                 //存在性检测规则
                 'check_mobile_exists' => 'exists:users',//适用于找回密码和系统内业务验证
-
+                'check_mobile' => 'sms',
                 //add your rules here...
             ]
         ]
@@ -95,7 +95,7 @@ return array(
     'verifySmsContent' => "【锐思达健身】亲爱的用户，您的验证码是%s。有效期为%s分钟，请尽快验证",
 
     // 验证码长度
-    'codeLength' => 5,
+    'codeLength' => 4,
 
     // 验证码有效时间长度，单位为分钟(minutes)
     'codeValidTime' => 5,
@@ -213,7 +213,7 @@ return array(
         'accountSid' => env('SMS_ACCOUNT_SID', 'your account id'),
 
         //主帐号令牌,对应官网开发者主账号下的 AUTH TOKEN
-        'accountToken' => env('SMS_ACCOUNT_SID', 'your account token'),
+        'accountToken' => env('SMS_ACCOUNT_TOKEN', 'your account token'),
 
         //应用Id，在官网应用列表中点击应用，对应应用详情中的APP ID
         //在开发调试的时候，可以使用官网自动为您分配的测试Demo的APP ID
@@ -226,6 +226,6 @@ return array(
      * -----------------------------------
      * store verify sms data in session
      */
-    'sessionKey' => 'laravel_sms_data',
+    'sessionKey' => 'restart_sms_data',
 
 );

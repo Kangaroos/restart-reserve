@@ -16,19 +16,18 @@ use App\FileEntry;
 |
 */
 
-Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
-
-// Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
+Route::group(['namespace' => 'Auth', 'prefix' => '/auth'], function () {
+    Route::get('/login', 'AuthController@getLogin');
+    Route::post('/login', ['as' => 'login', 'uses' => 'AuthController@postLogin']);
+    Route::get('/logout', ['as' => 'logout', 'uses' => 'AuthController@getLogout']);
+});
 
 Route::group(['prefix' => '/'], function () {
     Route::resource('stores', 'StoreController');
     Route::get('stores/{id}/courses', ['as' => 'store.courses', 'uses' => 'CourseController@getCoursesByStoreId']);
-    Route::get('login', ['uses' => 'UserController@getLogin']);
-    Route::post('login', ['as' => 'login', 'uses' => 'UserController@postLogin']);
+});
+
+Route::group(['prefix' => '/', 'middleware' => ['auth', 'acl'], 'is' => 'member|administrator'], function () {
     Route::get('members', ['uses' => 'UserController@getMembers']);
     Route::get('members/reserve', ['uses' => 'UserController@getMembersReserve']);
 });
@@ -39,7 +38,7 @@ Route::group(['prefix' => 'wechat'], function () {
     Route::match(['get', 'post'], 'serve', ['uses' => 'WechatController@serve']);
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'acl'], 'is' => 'administrator'], function() {
     Route::get('stores/{id}/classrooms', 'StoreController@getClassroomsByID');
     Route::post('stores/cover/{id}', 'StoreController@updateCover');
     Route::resource('stores', 'StoreController');

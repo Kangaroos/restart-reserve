@@ -30,7 +30,7 @@ class SmsSend extends Command
     {
         parent::__construct();
 
-        $this->sms = $sms;
+        $this->sms = $sms->template(env('SMS_TEMPLATE_ID', '14904'));
     }
 
     /**

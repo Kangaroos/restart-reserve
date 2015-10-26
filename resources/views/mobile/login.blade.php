@@ -16,27 +16,28 @@
     </header>
     @if($type == 'members')
         <div class="members-login">
-            <div class="members-tab" data-url="{{ url('/login?type=members') }}">会员</div>
-            <div class="non-members-tab" data-url="{{ url('/login?type=non-members') }}">非会员</div>
+            <div class="members-tab" data-url="{{ url('/auth/login?type=members') }}">会员</div>
+            <div class="non-members-tab" data-url="{{ url('/auth/login?type=non-members') }}">非会员</div>
             <form action="{{ route('login') }}" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="login-type" value="{{ $type }}" >
+                <input type="hidden" name="redirectTo" value="{{ $redirectTo }}" >
                 <div class="control">
                     <label>会员卡号</label>
-                    <input type="text">
+                    <input type="text" name="card_number" value="{{ old('card_number') }}">
                 </div>
                 <div class="control">
                     <label>姓 名</label>
-                    <input type="text">
+                    <input type="text" name="name" value="{{ old('name') }}">
                 </div>
                 <div class="control">
                     <label>手 机 号</label>
-                    <input type="tel">
+                    <input type="tel" name="mobile" maxlength="11" value="{{ old('mobile') }}">
                 </div>
                 <div class="control">
                     <label>短信码</label>
-                    <input type="number" class="otp">
-                    <a class="otp-btn">点击获取</a>
+                    <input type="number" class="otp" maxlength="4" name="verifyCode">
+                    <button id="sendVerifySmsButton" class="otp-btn">点击获取</button>
                 </div>
                 <div class="control">
                     <button type="submit">提交</button>
@@ -45,23 +46,24 @@
         </div>
     @else
         <div class="non-members-login">
-            <div class="members-tab" data-url="{{ url('/login?type=members') }}">会员</div>
-            <div class="non-members-tab" data-url="{{ url('/login?type=non-members') }}">非会员</div>
+            <div class="members-tab" data-url="{{ url('/auth/login?type=members') }}">会员</div>
+            <div class="non-members-tab" data-url="{{ url('/auth/login?type=non-members') }}">非会员</div>
             <form action="{{ route('login') }}" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="login-type" value="{{ $type }}" >
+                <input type="hidden" name="redirectTo" value="{{ $redirectTo }}" >
                 <div class="control">
                     <label>姓 名</label>
-                    <input type="text">
+                    <input type="text" name="name" value="{{ old('name') }}">
                 </div>
                 <div class="control">
                     <label>手 机 号</label>
-                    <input type="tel">
+                    <input type="tel" name="mobile" maxlength="11" value="{{ old('mobile') }}">
                 </div>
                 <div class="control">
                     <label>短信码</label>
-                    <input type="number" class="otp">
-                    <a class="otp-btn">点击获取</a>
+                    <input type="number" class="otp" maxlength="4" name="verifyCode">
+                    <button id="sendVerifySmsButton" class="otp-btn">点击获取</button>
                 </div>
                 <div class="control">
                     <button type="submit">提交</button>
@@ -75,7 +77,7 @@
 @section('end')
     @parent
     <script>
-        $script.ready('bundle', function(){
+        $script.ready(['bundle', 'material'], function(){
             $script(['{{ asset('assets/webpack/mobile/login.js')  }}']);
         })
     </script>

@@ -14,7 +14,30 @@
 
 // components
 @import "components/global";
+//@import "components/icons-material-design";
+//@import "components/grid";
+//@import "components/navbar";
 @import "components/roboto";
+@import "components/typography";
+//@import "components/cards";
+@import "components/toast";
+//@import "components/tabs";
+//@import "components/tooltip";
+//@import "components/buttons";
+//@import "components/dropdown";
+@import "components/waves";
+//@import "components/modal";
+//@import "components/collapsible";
+//@import "components/chips";
+//@import "components/materialbox";
+//@import "components/form";
+//@import "components/table_of_contents";
+//@import "components/sideNav";
+//@import "components/preloader";
+//@import "components/slider";
+//@import "components/date_picker/default.scss";
+//@import "components/date_picker/default.date.scss";
+//@import "components/date_picker/default.time.scss";
 
 @media screen and (max-width:320px) {html{font-size: 80%;}}
 @media screen and (min-width:321px) and (max-width:360px) {html{font-size: 70.3125%;}}
@@ -414,6 +437,10 @@ body {
     .otp-btn {
       width: 33.33%;
       color: #8cc23d;
+      background: transparent;
+      outline: none;
+      border: 0;
+      font-size: rem(15px);
     }
 
     button[type=submit] {

@@ -18,9 +18,9 @@
     <div class="member-info">
         <img src="{{ asset('assets/images/member-center-bg.jpg') }}">
         <ul>
-            <li>代用名（年卡会员）</li>
-            <li>137****8888</li>
-            <li>B78****</li>
+            <li>{{ Auth::user()->name }}（年卡会员）</li>
+            <li>{{ Auth::user()->mobile }}</li>
+            <li>{{ Auth::user()->card_number }}</li>
         </ul>
     </div>
     <div class="members-menu">

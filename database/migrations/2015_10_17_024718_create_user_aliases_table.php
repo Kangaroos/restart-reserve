@@ -18,6 +18,7 @@ class CreateUserAliasesTable extends Migration
             $table->string('provider');
             $table->string('alias');
             $table->string('type');
+            $table->json('data');
             $table->timestamps();
             $table->index(['provider', 'alias']);
         });
@@ -30,6 +31,6 @@ class CreateUserAliasesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('user_aliases');
     }
 }
