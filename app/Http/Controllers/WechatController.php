@@ -17,22 +17,16 @@ class WechatController extends Controller {
     /**
      * 处理微信的请求消息
      *
-     * @param Overtrue\Wechat\Server $server
+     * @param \Overtrue\Wechat\Server $server
      *
      * @return string
      */
     public function serve(Server $server)
     {
         $server->on('message', function($message){
-            return "欢迎关注 overtrue！";
+            return "欢迎关注 [锐思达健身]，微信公众号建设中，敬请期待！";
         });
 
         return $server->serve(); // 或者 return $server;
-    }
-
-    public function demo(Auth $auth)
-    {
-        // $auth 则为容器中 Overtrue\Wechat\Auth 的实例
-
     }
 }
