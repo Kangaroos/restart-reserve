@@ -24,7 +24,6 @@
     <script>
         $script(['{{ asset('assets/webpack/mobile.scss.js') }}']);
     </script>
-    <script src=""></script>
     @section('head')
     @show{{-- 页面head --}}
 </head>

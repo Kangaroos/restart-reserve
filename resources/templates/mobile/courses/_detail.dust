@@ -1,0 +1,16 @@
+<div class="course-detail">
+    <div class="container">
+        <header>
+            <span class="title">动感单车</span>
+            <i class="close-icon"></i>
+        </header>
+        <div class="image">
+            <img src="../../../assets/images/detail-bg.jpg" alt="">
+        </div>
+        <div class="detail-info">
+            <p>课程介绍：</p>
+            <p>课程时间：</p>
+            <p>教练介绍：</p>
+        </div>
+    </div>
+</div>

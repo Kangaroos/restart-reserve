@@ -14,4 +14,8 @@ class UserController extends Controller
     public function getMembersReserve() {
         return view('mobile.members.reserve');
     }
+
+    public function getMembersReserveDetail() {
+        return view('mobile.members.reserve-detail');
+    }
 }

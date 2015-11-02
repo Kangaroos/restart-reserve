@@ -38,10 +38,10 @@
             <div class="course">
                 <span class="name">动感单车1</span>
                 <span class="time">15:00-16:00</span>
-            <span class="group">
-                <a class="button" href="#">详情</a>
-                <a class="button">预约</a>
-            </span>
+                <span class="group">
+                    <a class="button detail" href="#">详情</a>
+                    <a class="button" href="{{ route('course.reserve', 1) }}">预约</a>
+                </span>
             </div>
             <div class="divider"></div>
         </div>
@@ -50,8 +50,8 @@
                 <span class="name">动感单车2</span>
                 <span class="time">15:00-16:00</span>
             <span class="group">
-                <a class="button" href="#">详情</a>
-                <a class="button">预约</a>
+                <a class="button detail" href="#">详情</a>
+                <a class="button" href="{{ route('course.reserve', 1) }}">预约</a>
             </span>
             </div>
             <div class="divider"></div>
@@ -60,10 +60,10 @@
             <div class="course">
                 <span class="name">动感单车3</span>
                 <span class="time">15:00-16:00</span>
-            <span class="group">
-                <a class="button" href="#">详情</a>
-                <a class="button">预约</a>
-            </span>
+                <span class="group">
+                    <a class="button detail" href="#">详情</a>
+                    <a class="button" href="{{ route('course.reserve', 1) }}">预约</a>
+                </span>
             </div>
             <div class="divider"></div>
         </div>

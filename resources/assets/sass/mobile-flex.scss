@@ -1,0 +1,347 @@
+@import "bourbon";
+@import "neat";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  @include display(flex);
+  @include flex-direction(column);
+}
+
+.seats {
+  @include flex(1);
+  margin: .875rem .5rem;
+  background-color: #e6e6e6;
+  border-radius: .375rem;
+  overflow: auto;
+
+  .header {
+    border-radius: .375rem .375rem 0 0;
+    height: auto;
+    background-color: #ffffff;
+    border-bottom: 2px solid #bcbcbc;
+    text-align: center;
+
+    .info {
+      position: relative;
+      display: block;
+      border-bottom: 2px solid #bcbcbc;
+      text-align: left;
+      width: 96%;
+      margin: 0 auto;
+      padding-top: .875rem;
+      padding-left: 1rem;
+      .title {
+        font-size: 1.125rem;
+        height: 2rem;
+        line-height: 2rem;
+      }
+
+      .date {
+        font-size: .875rem;
+        color: #9fa0a0;
+        height: 2rem;
+        line-height: 2rem;
+      }
+
+      button {
+        position: absolute;
+        right: 1rem;
+        top: 1.5rem;
+        background: #8cc23d;
+        border: 0;
+        outline: 0;
+        color: #ffffff;
+        width: 5rem;
+        height: 2.5rem;
+        border-radius: .3125rem;
+      }
+    }
+  }
+
+  .seatCharts-container {
+    margin: 0 auto;
+    text-align: center;
+
+    .front {
+      width: 96%;
+      height: 3.5rem;
+      line-height: 3.5rem;
+      margin: 0 auto;
+      color: #ffffff;
+      background-color: #7ec041;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .seatCharts-row {
+      display: inline-block;
+      margin: 0 auto;
+      text-align: center;
+      height: auto;
+    }
+  }
+
+  .seatCharts-legend {
+    display: inline-block;
+    margin: .625rem auto;
+
+    .seatCharts-legendList {
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .seatCharts-legendItem {
+      float: left;
+      margin: 0;
+      line-height: 2rem;
+      padding-right: 1rem;
+    }
+
+    .seatCharts-legendDescription {
+      color: #9fa0a0;
+      margin-left: .625rem;
+    }
+  }
+
+  .seatCharts-seat {
+    background-color: transparent;
+    color: transparent;
+    cursor: default;
+    border-radius: 0;
+
+    &.available {
+      color: transparent;
+      background-color: transparent;
+      border: 1px solid #9fa0a0;
+    }
+    &.unavailable {
+      color: #7ec041;
+      background-color: #7ec041;
+      cursor: not-allowed;
+    }
+    &.selected {
+      color: #7ec041;
+      background-color: #7ec041;
+      cursor: not-allowed;
+    }
+    &.focused {
+      color: #7ec041;
+      background-color: #7ec041;
+      cursor: not-allowed;
+    }
+  }
+
+  .seatCharts-cell {
+    height: 1.8rem;
+    width: 4rem;
+    float: left;
+    text-align: center;
+    outline: none;
+    font-size: 1rem;
+    line-height: 1.8rem;
+    color: #ffffff;
+  }
+
+  .seatCharts-space {
+    display: none;
+    background: transparent;
+  }
+}
+
+.reserve-result {
+  position: relative;
+  @include flex(1);
+  margin: .875rem .875rem;
+  background-color: #e3e4e4;
+  border-radius: .375rem;
+  overflow: auto;
+
+  .image {
+    position: relative;
+    display: block;
+    width: 95%;
+    margin: 0 auto;
+    text-align: center;
+    img {
+      width: 100%;
+      vertical-align: top;
+    }
+    .info {
+      position: absolute;
+      display: block;
+      width: 100%;
+      top: 5.8rem;
+      left: 2rem;
+      line-height: 1.625rem;
+      text-align: left;
+      .title {
+        margin: .5rem auto;
+        font-size: 1.25rem;
+      }
+      p {
+        margin: 0;
+        color: #9fa0a0;
+        &.green {
+          margin-top: 1rem;
+          color: #7ebf41;
+          background: transparent!important;
+        }
+      }
+    }
+
+    @media screen and (min-width:360px) and (max-width:383px) {
+      .info {
+        top: 7.25rem;
+        left: 2.5rem;
+        line-height: 2rem;
+        .title {
+          margin: .5rem auto;
+          font-size: 1.5rem;
+        }
+        p {
+          font-size: 1.25rem;
+          &.green {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+    @media screen and (min-width:384px) and (max-width: 412px) {
+      .info {
+        top: 6rem;
+        left: 2rem;
+        line-height: 1.625rem;
+        .title {
+          margin: .5rem auto;
+          font-size: 1.25rem;
+        }
+        p {
+          font-size: 1rem;
+          &.green {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+    @media screen and (min-width:412px) and (max-width:480px) {
+      .info {
+        top: 6.5rem;
+        left: 2rem;
+        line-height: 1.875rem;
+        .title {
+          margin: .5rem auto;
+          font-size: 1.325rem;
+        }
+        p {
+          font-size: 1.125rem;
+          &.green {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+    @media screen and (min-width:481px) and (max-width:600px) {
+      .info {
+        top: 7rem;
+        left: 2.5rem;
+        line-height: 2rem;
+        .title {
+          margin: .5rem auto;
+          font-size: 1.5rem;
+        }
+        p {
+          font-size: 1.25rem;
+          &.green {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+    @media screen and (min-width:601px) and (max-width:800px) {
+      .info {
+        top: 8rem;
+        left: 2.5rem;
+        line-height: 2rem;
+        .title {
+          margin: .5rem auto;
+          font-size: 1.625rem;
+        }
+        p {
+          font-size: 1.325rem;
+          &.green {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+    @media screen and (width: 375px) and (height: 627px) {
+      .info {
+        top: 5.8rem;
+        left: 2rem;
+        line-height: 1.625rem;
+        .title {
+          margin: .5rem auto;
+          font-size: 1.25rem;
+        }
+        p {
+          font-size: 1rem;
+          &.green {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+
+  }
+
+  .sms-form {
+    display: block;
+    width: 95%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 .3125rem;
+    input {
+      margin-top: 1.125rem;
+      padding-left: 1rem;
+      font-size: 1.25rem;
+      color: #9fa0a0;
+      width: 100%;
+      height: 3rem;
+      line-height: 3rem;
+      display: block;
+      outline: none;
+      border: 1px solid #8cc23d;
+      border-radius: .1875rem;
+      -moz-box-shadow:.2rem .125rem .3125rem #5d595a inset;
+      -webkit-box-shadow:.2rem .125rem .3125rem #5d595a inset;
+      box-shadow:.2rem .125rem .3125rem #5d595a inset;
+    }
+    button {
+      margin-top: .875rem;
+      width: 100%;
+      height: 3rem;
+      line-height: 3rem;
+      display: block;
+      background: url("../images/btn-bg.png") repeat-x;
+      background-size: contain;
+      outline: none;
+      border: none;
+      border-radius: .1875rem;
+      font-size: 1.25rem;
+      color: #ffffff
+    }
+  }
+  .tips {
+    display: block;
+    width: 95%;
+    margin: 0 auto;
+    padding: .5rem .3125rem;
+    text-align: left;
+    color: #457e12;
+    font-size: .75rem;
+  }
+
+}
