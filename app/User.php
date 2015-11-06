@@ -56,4 +56,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->hasMany('App\Reserve');
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany('Kodeine\Acl\Models\Eloquent\Role');
+    }
 }

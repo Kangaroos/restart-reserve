@@ -50,12 +50,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
 
     Route::resource('classrooms', 'ClassroomController');
     Route::resource('coaches', 'CoachController');
+
+    Route::get('course/check', 'CourseController@checkCourse');
     Route::resource('courses', 'CourseController');
+
+    Route::resource('users', 'UserController');
+
+    Route::get('/', ['uses' => 'HomeController@getIndex']);
 });
 
-
 Route::controller('admin', 'AdminController');
-
 
 Route::get('file/{id}',['as' => 'getfile', function($id) {
     $entry = FileEntry::find($id);

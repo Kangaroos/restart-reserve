@@ -8,21 +8,11 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
             top: false,
             left:false
         },
-        map: [  //座位图
-            'aaaa_',
-            'aaaa_',
-            'aaaaa',
-            'aaaa_',
-            'aaaaa',
-            'aaaa_',
-            'aaaa_',
-            'aaaa_',
-            'aaaa_',
-            'aaaaa',
-            'aaaa_',
-            'aaaa_',
-            'aaaaa'
-        ],
+        map: ['aaaaaaa','aaaaaaa','aaaaaaa','aaaaaaa','_aaaaaa','__aaaaa'],
+        seats: {a: {classes : 'triangle'}},
+        row: {
+            align: 'right'
+        },
         legend : { //定义图例
             node : $('#legend'),
             items : [

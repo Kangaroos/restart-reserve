@@ -77,10 +77,17 @@ body {
     }
 
     .seatCharts-row {
-      display: inline-block;
+      display: table;
       margin: 0 auto;
       text-align: center;
       height: auto;
+      &.center {
+        width: auto;
+      }
+      &.left, &.right {
+        width: 100%;
+        padding: 0 1rem;
+      }
     }
   }
 
@@ -106,7 +113,7 @@ body {
     }
   }
 
-  .seatCharts-seat {
+  .seatCharts-seat.rectangle {
     background-color: transparent;
     color: transparent;
     cursor: default;
@@ -134,15 +141,63 @@ body {
     }
   }
 
-  .seatCharts-cell {
-    height: 1.8rem;
+  .seatCharts-seat.triangle {
+    background-color: transparent;
+    color: transparent;
+    cursor: default;
+    border-radius: 0;
+
+    &.available {
+      color: transparent;
+      background: url("../images/triangle-available.png") no-repeat;
+      background-size: contain;
+    }
+    &.unavailable {
+      color: transparent;
+      background: url("../images/triangle-selected.png") no-repeat;
+      cursor: not-allowed;
+      background-size: contain;
+    }
+    &.selected {
+      color: transparent;
+      background: url("../images/triangle-selected.png") no-repeat;
+      cursor: not-allowed;
+      background-size: contain;
+    }
+    &.focused {
+      color: transparent;
+      background: url("../images/triangle-selected.png") no-repeat;
+      cursor: not-allowed;
+      background-size: contain;
+    }
+  }
+
+  .seatCharts-cell.rectangle {
     width: 4rem;
+    height: 1.8rem;
     float: left;
     text-align: center;
     outline: none;
     font-size: 1rem;
     line-height: 1.8rem;
     color: #ffffff;
+  }
+
+  .seatCharts-cell.triangle {
+    height: 2.5rem;
+    width: 2.5rem;
+    float: left;
+    text-align: center;
+    outline: none;
+    font-size: 1rem;
+  }
+
+  .seatCharts-row.left .seatCharts-cell {
+    float: left;
+  }
+
+  .seatCharts-row.right .seatCharts-cell {
+    float: right;
   }
 
   .seatCharts-space {

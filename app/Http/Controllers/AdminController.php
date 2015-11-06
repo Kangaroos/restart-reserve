@@ -7,12 +7,6 @@ use App\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller {
-
-    public function getIndex(Request $request)
-    {
-        return view('admin.index');
-    }
-
     public function getLogin(Request $request) {
         $redirectTo = $request->query('redirectTo', '/admin');
         return view('admin-login', compact('redirectTo'));

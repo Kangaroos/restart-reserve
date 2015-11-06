@@ -12,8 +12,6 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
 
     var detailTmpl = require('../../../templates/mobile/courses/_detail.dust');
 
-
-
     $('.course .button.detail').hammer().on('tap', function(e) {
         var courseDetail = $('.course-detail');
         if(courseDetail.length > 0) {

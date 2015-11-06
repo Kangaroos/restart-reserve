@@ -16,6 +16,13 @@
                 </select>
             </div>
             <div class="field">
+                <label>座位类型</label>
+                <select name="seats_style" class="ui fluid dropdown">
+                    <option value="rectangle">功能教室</option>
+                    <option value="triangle">动感单车</option>
+                </select>
+            </div>
+            <div class="field">
                 <label>描述</label>
                 <textarea name="description">{description}</textarea>
             </div>

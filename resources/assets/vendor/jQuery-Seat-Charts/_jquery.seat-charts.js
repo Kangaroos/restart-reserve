@@ -38,6 +38,9 @@
 					node   : null,
 					items  : []
 				},
+				row: {
+					align: 'center'
+				},
 				click   : function() {
 
 					if (this.status() == 'available') {
@@ -356,8 +359,7 @@
 		//do this for each map row
 		$.each(settings.map, function(row, characters) {
 
-			var $row = $('<div></div>').addClass('seatCharts-row');
-				
+			var $row = $('<div></div>').addClass('seatCharts-row').addClass(settings.row.align);
 			if (settings.naming.left) {
 				$row.append(
 					$('<div></div>')
@@ -427,7 +429,7 @@
 		//if there're any legend items to be rendered
 		settings.legend.items.length ? (function(legend) {
 			//either use user-defined container or create our own and insert it right after the seat chart div
-			var $container = (legend.node || $('<div></div').insertAfter(fn))
+			var $container = (legend.node || $('<div></div>').insertAfter(fn))
 				.addClass('seatCharts-legend');
 				
 			var $ul = $('<ul></ul>')

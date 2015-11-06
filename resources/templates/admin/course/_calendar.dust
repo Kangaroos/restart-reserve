@@ -4,10 +4,11 @@
         <div class="ui grid">
             <div class="row">
                 <div class="three wide column">
-                    123
+                    <div class="drag-course">{name}</div>
                 </div>
                 <div class="thirteen wide column">
-                    345
+                    <div id='calendar'></div>
+                    <div style='clear:both'></div>
                 </div>
             </div>
         </div>

@@ -12,6 +12,7 @@
     <meta name="_token" content="{{ csrf_token() }}" />
     <title>@section('title')@show{{-- 页面标题 --}}</title>
     <link rel="stylesheet" href="{{ asset('assets/semantic/semantic.css')  }}" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css" />
     <script>
         /* inlining code, make this better */
         /*!
@@ -35,7 +36,8 @@
     $script([
         '//cdn.bootcss.com/jquery/1.11.3/jquery.min.js',
         '//cdn.bootcss.com/dustjs-linkedin/2.7.2/dust-core.min.js',
-        '//cdn.bootcss.com/moment.js/2.10.6/moment.min.js'
+        '//cdn.bootcss.com/moment.js/2.10.6/moment.min.js',
+        '//cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js'
     ], function(){
         $script([
             '//cdn.bootcss.com/moment.js/2.10.6/locale/zh-cn.js'

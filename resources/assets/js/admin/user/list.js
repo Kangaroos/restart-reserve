@@ -1,5 +1,5 @@
 define(['jquery', 'dust', '$script'], function($, dust, $script) {
-    var formTmpl = require('../../../../templates/admin/classroom/_form.dust');
+    var formTmpl = require('../../../../templates/admin/user/_form.dust');
 
     function formValid($form) {
         $form.form({
@@ -9,7 +9,7 @@ define(['jquery', 'dust', '$script'], function($, dust, $script) {
                     rules: [
                         {
                             type   : 'empty',
-                            prompt : '请输入教室名称'
+                            prompt : '请输入用户名称'
                         }
                     ]
                 }
@@ -37,19 +37,17 @@ define(['jquery', 'dust', '$script'], function($, dust, $script) {
         });
     }
 
-    $('#createClassroomBtn').on('click', function(e) {
-        var formId = 'createClassroomForm';
+    $('#createUserBtn').on('click', function(e) {
+        var formId = 'createUserForm';
         $('.ui.modals').remove();
         dust.render(formTmpl, {
             formId: formId,
-            header:'新增教室',
+            header:'新增用户',
             saveText: '保 存',
-            action: '/admin/classrooms',
-            method: 'POST',
-            stores: $.parseJSON($('#stores').val())
+            action: '/admin/users',
+            method: 'POST'
         }, function(err, result) {
             document.body.insertAdjacentHTML('beforeend', result);
-            $('select.dropdown').dropdown();
 
             var $form = $('#' + formId);
 
@@ -67,24 +65,23 @@ define(['jquery', 'dust', '$script'], function($, dust, $script) {
         });
     });
 
-    $('div[data-id="editClassroomBtn"]').on('click', function(e) {
-        var formId = 'editClassroomForm';
-        var tr = $(this).closest('tr'), classroomId = tr.data('id');
+    $('div[data-id="editUserBtn"]').on('click', function(e) {
+        var formId = 'editUserForm';
+        var tr = $(this).closest('tr'), userId = tr.data('id');
 
         $('.ui.modals').remove();
 
         $.ajax({
-            url: ['/admin/classrooms/',classroomId].join(''),
+            url: ['/admin/users/',userId].join(''),
             type: 'GET',
             dataType: 'json'
         }).done(function(ret) {
             var renderData = $.extend({
                 formId: formId,
-                header:'修改教室',
+                header:'修改用户',
                 saveText: '更 新',
-                action: ['/admin/classrooms/', classroomId].join(''),
-                method: 'PUT',
-                stores: $.parseJSON($('#stores').val())
+                action: ['/admin/users/', userId].join(''),
+                method: 'PUT'
             }, ret);
 
             dust.render(formTmpl, renderData, function(err, result) {
@@ -107,11 +104,12 @@ define(['jquery', 'dust', '$script'], function($, dust, $script) {
         });
     });
 
-    $('div[data-id="deleteClassroomBtn"]').on('click', function(e) {
-        var tr = $(this).closest('tr'),classroomId = tr.data('id');
+    $('div[data-id="deleteUserBtn"]').on('click', function(e) {
+        var tr = $(this).closest('tr'),userId = tr.data('id');
+
         swal({
             title: "提示",
-            text: "确定要删除教室信息?",
+            text: "确定要删除用户信息?",
             type: "warning",
             showCancelButton: true,
             closeOnConfirm: false,
@@ -122,7 +120,7 @@ define(['jquery', 'dust', '$script'], function($, dust, $script) {
         }, function(isConfirm){
             if (isConfirm) {
                 $.ajax({
-                    url: ['/admin/classrooms/', classroomId].join(''),
+                    url: ['/admin/users/', userId].join(''),
                     type: 'DELETE',
                     dataType: 'json'
                 }).done(function(ret){

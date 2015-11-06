@@ -1,17 +1,15 @@
 define(['jquery', 'dust', '$script'], function($, dust, $script) {
     var formTmpl = require('../../../../templates/admin/coach/_form.dust');
-    var alertTmpl = require('../../../../templates/admin/common/_alert.dust');
 
     function formValid($form) {
         $form.form({
-            //on: 'blur',
             fields: {
                 name: {
                     identifier: 'name',
                     rules: [
                         {
                             type   : 'empty',
-                            prompt : 'Please enter your name'
+                            prompt : '请输入教练名称'
                         }
                     ]
                 }
@@ -108,27 +106,34 @@ define(['jquery', 'dust', '$script'], function($, dust, $script) {
 
     $('div[data-id="deleteCoachBtn"]').on('click', function(e) {
         var tr = $(this).closest('tr'),coachId = tr.data('id');
-        $('.ui.basic.modals').remove();
-        dust.render(alertTmpl, {status: 'warning', desc: '确定要删除教练信息?', denyButtonText: '否', confirmButtonText: '是'}, function(err, result) {
-            document.body.insertAdjacentHTML('beforeend', result);
-            $('.ui.basic.modal')
-                .modal({
-                    closable  : false,
-                    onDeny    : function(){
-                    },
-                    onApprove : function() {
-                        $.ajax({
-                            url: ['/admin/coaches/', coachId].join(''),
-                            type: 'DELETE',
-                            dataType: 'json'
-                        }).done(function(ret){
-                            $('.ui.basic.modal').modal('hide');
-                            window.location.reload();
-                        });
-                        return false;
-                    }
-                })
-                .modal('show');
+
+        swal({
+            title: "提示",
+            text: "确定要删除教练信息?",
+            type: "warning",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "确认",
+            cancelButtonText: "取消"
+        }, function(isConfirm){
+            if (isConfirm) {
+                $.ajax({
+                    url: ['/admin/coaches/', coachId].join(''),
+                    type: 'DELETE',
+                    dataType: 'json'
+                }).done(function(ret){
+                    swal({
+                        title: "删除成功",
+                        text: "1 秒后返回...",
+                        timer: 1000,
+                        showConfirmButton: false
+                    }, function() {
+                        window.location.reload();
+                    });
+                });
+            }
         });
     });
 });

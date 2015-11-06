@@ -4,7 +4,6 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
     });
 
     var formTmpl = require('../../../../templates/admin/store/_form.dust');
-    var alertTmpl = require('../../../../templates/admin/common/_alert.dust');
 
     function formValid($form) {
         $form.form({
@@ -14,7 +13,7 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
                     rules: [
                         {
                             type   : 'empty',
-                            prompt : 'Please enter your name'
+                            prompt : '请输入门店名称'
                         }
                     ]
                 },
@@ -123,27 +122,34 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
 
     $('div[data-id="deleteStoreBtn"]').on('click', function(e) {
         var card = $(this).closest('.ui.card'),storeId = card.data('id');
-        $('.ui.basic.modals').remove();
-        dust.render(alertTmpl, {status: 'warning', desc: '确定要删除门店信息?', denyButtonText: '否', confirmButtonText: '是'}, function(err, result) {
-            document.body.insertAdjacentHTML('beforeend', result);
-            $('.ui.basic.modal')
-                .modal({
-                    closable  : false,
-                    onDeny    : function(){
-                    },
-                    onApprove : function() {
-                        $.ajax({
-                            url: ['/admin/stores/', storeId].join(''),
-                            type: 'DELETE',
-                            dataType: 'json'
-                        }).done(function(ret){
-                            $('.ui.basic.modal').modal('hide');
-                            window.location.reload();
-                        });
-                        return false;
-                    }
-                })
-                .modal('show');
+
+        swal({
+            title: "提示",
+            text: "确定要删除门店信息?",
+            type: "warning",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "确认",
+            cancelButtonText: "取消"
+        }, function(isConfirm){
+            if (isConfirm) {
+                $.ajax({
+                    url: ['/admin/stores/', storeId].join(''),
+                    type: 'DELETE',
+                    dataType: 'json'
+                }).done(function(ret){
+                    swal({
+                        title: "删除成功",
+                        text: "1 秒后返回...",
+                        timer: 1000,
+                        showConfirmButton: false
+                    }, function() {
+                        window.location.reload();
+                    });
+                });
+            }
         });
     });
 
@@ -154,33 +160,39 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
         if( ( type.length > 0 && ! (/^image\/(jpe?g|png|gif|bmp)$/i).test(type) )
             || ( type.length == 0 && ! (/\.(jpe?g|png|gif|bmp)$/i).test(file.name) )
         ) {
-            alert('请选择正确的图片')
+            sweetAlert("出错啦...", "请选择正确的图片!", "error");
         } else {
-            $('.ui.basic.modals').remove();
-            dust.render(alertTmpl, {status: 'warning', desc: '确定要替换封面吗?', denyButtonText: '否', confirmButtonText: '是'}, function(err, result) {
-                document.body.insertAdjacentHTML('beforeend', result);
-                $('.ui.basic.modal')
-                    .modal({
-                        closable  : false,
-                        onDeny    : function(){
-                        },
-                        onApprove : function() {
-                            var data = new FormData();
-                            data.append('cover', file);
-                            $.ajax({
-                                url: ['/admin/stores/cover/', storeId].join(''),
-                                type: 'POST',
-                                data: data,
-                                processData: false,
-                                contentType: false
-                            }).done(function(ret){
-                                $('.ui.basic.modal').modal('hide');
-                                window.location.reload();
-                            });
-                            return false;
-                        }
-                    })
-                    .modal('show');
+            swal({
+                title: "提示",
+                text: "确定要替换封面吗?",
+                type: "warning",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确认",
+                cancelButtonText: "取消"
+            }, function(isConfirm){
+                if (isConfirm) {
+                    var data = new FormData();
+                    data.append('cover', file);
+                    $.ajax({
+                        url: ['/admin/stores/cover/', storeId].join(''),
+                        type: 'POST',
+                        data: data,
+                        processData: false,
+                        contentType: false
+                    }).done(function(ret){
+                        swal({
+                            title: "替换成功",
+                            text: "1 秒后返回...",
+                            timer: 1000,
+                            showConfirmButton: false
+                        }, function() {
+                            window.location.reload();
+                        });
+                    });
+                }
             });
         }
     });

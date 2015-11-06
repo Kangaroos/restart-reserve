@@ -2,7 +2,9 @@
 @section('title', '课程管理 - 锐思达预约系统后台管理')
 @section('head')
     @parent
+    <link rel="stylesheet" href="//cdn.bootcss.com/jquery-timepicker/1.8.3/jquery.timepicker.min.css" />
     <link rel="stylesheet" href="//cdn.bootcss.com/fullcalendar/2.4.0/fullcalendar.min.css" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/fullcalendar/2.4.0/fullcalendar.print.css" media='print' />
 @endsection
 @section('content')
     <div id="sub-header" class="ui top attached menu">
@@ -43,9 +45,9 @@
         @foreach($courses as $course)
             <tr data-id="{{ $course->id }}">
                 <td>{{ $course->name }}</td>
-                <td>{{ $course->store_name }}</td>
-                <td>{{ $course->classroom_name }}</td>
-                <td>{{ $course->coach_name }}</td>
+                <td>{{ $course->store->name }}</td>
+                <td>{{ $course->classroom->name }}</td>
+                <td>{{ $course->coach->name }}</td>
                 <td>{{ $course->class_date }}</td>
                 <td>{{ $course->class_time_begin }}</td>
                 <td>{{ $course->class_time_end }}</td>
@@ -70,7 +72,8 @@
 @parent
 <script>
     $script.ready('bundle', function(){
-        $script(['//cdn.bootcss.com/fullcalendar/2.4.0/fullcalendar.min.js'], function(){
+        $script(['//cdn.bootcss.com/fullcalendar/2.4.0/fullcalendar.min.js'
+            , '//cdn.bootcss.com/jquery-timepicker/1.8.3/jquery.timepicker.min.js'], function(){
             $script(['//cdn.bootcss.com/fullcalendar/2.4.0/lang/zh-cn.js']);
             $script(['{{ asset('assets/webpack/admin/course/list.js')  }}']);
         });

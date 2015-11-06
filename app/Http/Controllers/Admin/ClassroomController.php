@@ -33,8 +33,18 @@ class ClassroomController extends Controller
             'name' => 'required'
         ]);
 
+        $data = $request->all();
+        $seatStyle = $data['seats_style'];
+        array_forget($data, 'seats_style');
         $classrooms = new Classroom;
-        $classrooms->fill($request->all());
+        $classrooms->fill($data);
+        if($seatStyle == 'rectangle') {
+            $classrooms->seats_map = "['aaaa_','aaaa_','aaaaa','aaaa_','aaaaa','aaaa_','aaaa_','aaaa_','aaaa_','aaaaa','aaaa_','aaaa_','aaaaa']";
+            $classrooms->seats = "{a: {classes : 'rectangle'}}";
+        } else {
+            $classrooms->seats_map = "['aaaaaaa','aaaaaaa','aaaaaaa','aaaaaaa','_aaaaaa','__aaaaa']";
+            $classrooms->seats = "{a: {classes : 'triangle'}}";
+        }
 
         $classrooms->save();
 
@@ -46,9 +56,19 @@ class ClassroomController extends Controller
             'name' => 'required'
         ]);
 
-        $classrooms = Classroom::find($id);
-        $classrooms->fill($request->all());
 
+        $data = $request->all();
+        $seatStyle = $data['seats_style'];
+        array_forget($data, 'seats_style');
+        $classrooms = Classroom::find($id);
+        $classrooms->fill($data);
+        if($seatStyle == 'rectangle') {
+            $classrooms->seats_map = "['aaaa_','aaaa_','aaaaa','aaaa_','aaaaa','aaaa_','aaaa_','aaaa_','aaaa_','aaaaa','aaaa_','aaaa_','aaaaa']";
+            $classrooms->seats = "{a: {classes : 'rectangle'}}";
+        } else {
+            $classrooms->seats_map = "['aaaaaaa','aaaaaaa','aaaaaaa','aaaaaaa','_aaaaaa','__aaaaa']";
+            $classrooms->seats = "{a: {classes : 'triangle'}}";
+        }
         $classrooms->save();
 
         return response()->json(['id' => $classrooms->id]);

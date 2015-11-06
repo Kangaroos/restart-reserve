@@ -32,6 +32,16 @@
                     {/coaches}
                 </select>
             </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>课程开始时间</label>
+                    <input name="class_time_begin" type="text" placeholder="请输入课程开始时间">
+                </div>
+                <div class="field">
+                    <label>课程结束时间</label>
+                    <input name="class_time_end" type="text" placeholder="请输入课程结束时间">
+                </div>
+            </div>
             <div class="field">
                 <label>描述</label>
                 <textarea name="description">{description}</textarea>

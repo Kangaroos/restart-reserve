@@ -14,19 +14,17 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->integer('store_id');
-            $table->string('store_name');
             $table->integer('coach_id');
-            $table->string('coach_name');
             $table->integer('classroom_id');
-            $table->string('classroom_name');
             $table->timestamp('class_date'); //课程日期
             $table->time('class_time_begin'); //课程开始时间
             $table->time('class_time_end'); //课程结束时间
             $table->string('week'); //星期几
             $table->longText('description');
             $table->longText('needing_attention'); //注意事项
+            $table->string('status')->default('pending'); //pending:待发布  approved:已发布
             $table->timestamps();
         });
     }
