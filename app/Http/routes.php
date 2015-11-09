@@ -27,15 +27,19 @@ Route::group(['namespace' => 'Auth', 'prefix' => '/auth'], function () {
 Route::group(['prefix' => '/'], function () {
     Route::resource('stores', 'StoreController');
     Route::get('stores/{id}/courses', ['as' => 'store.courses', 'uses' => 'CourseController@getCoursesByStoreId']);
+});
+
+Route::group(['prefix' => '/', 'middleware' => ['auth', 'acl'], 'is' => 'member'], function () {
     Route::get('courses/{id}/reserve', ['as' => 'course.reserve', 'uses' => 'CourseController@getCourseReserveById']);
-    Route::get('courses/{id}/reserve/result', ['as' => 'course.reserve.result', 'uses' => 'CourseController@getCourseReserveResultById']);
-    Route::resource('courses', 'CourseController');
+    Route::get('reserves/{id}', ['as' => 'reserve.result', 'uses' => 'ReserveController@getReserveResultById']);
+    Route::post('reserves/send', ['as' => 'reserve.send', 'uses' => 'ReserveController@sendReserveSms']);
+    Route::resource('reserves', 'ReserveController');
 });
 
 Route::group(['prefix' => '/members', 'middleware' => ['auth', 'acl'], 'is' => 'member'], function () {
     Route::get('', ['as' => 'members', 'uses' => 'UserController@getMembers']);
-    Route::get('reserve/', ['uses' => 'UserController@getMembersReserve']);
-    Route::get('reserve/{id}', ['uses' => 'UserController@getMembersReserveDetail']);
+    Route::get('reserve', ['as' => 'members.reserve','uses' => 'UserController@getMembersReserve']);
+    Route::get('reserve/{id}', ['as' => 'members.reserve.detail', 'uses' => 'UserController@getMembersReserveDetail']);
 });
 
 Route::group(['prefix' => 'wechat'], function () {
@@ -53,6 +57,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
 
     Route::get('course/check', 'CourseController@checkCourse');
     Route::resource('courses', 'CourseController');
+
+    Route::resource('reserves', 'ReserveController');
 
     Route::resource('users', 'UserController');
 

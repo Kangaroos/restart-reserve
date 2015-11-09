@@ -1,17 +1,26 @@
 define(['jquery', 'dust', '$script'], function($, dust, $script){
     require('../../../vendor/jQuery-Seat-Charts/_jquery.seat-charts.css');
     require('../../../vendor/jQuery-Seat-Charts/_jquery.seat-charts');
+    require('../../components/_toasts');
 
     var selectedSeats = $('#selected-seats');
-    var sc = $('#seat-map').seatCharts({
+
+    var seatMap = $('#seat-map');
+    var seats = seatMap.data('seats');
+    var align = 'center';
+    if(seats.a.classes == 'triangle') {
+        align = 'right';
+    }
+
+    var sc = seatMap.seatCharts({
         naming: {
             top: false,
             left:false
         },
-        map: ['aaaaaaa','aaaaaaa','aaaaaaa','aaaaaaa','_aaaaaa','__aaaaa'],
-        seats: {a: {classes : 'triangle'}},
+        map: seatMap.data('map'),
+        seats: seatMap.data('seats'),
         row: {
-            align: 'right'
+            align: align
         },
         legend : { //定义图例
             node : $('#legend'),
@@ -38,5 +47,25 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
         }
     });
     //已售出的座位
-    sc.get(['1_1']).status('unavailable');
+    sc.get(seatMap.data('unavailable')).status('unavailable');
+
+
+    $('.btn-reserve').hammer().on('tap', function() {
+        var $form = $('form');
+
+        if($('#selected-seats').val() == "") {
+            Materialize.toast('请选择一个位子！', 3000);
+            return;
+        }
+
+        $form.submit();
+    });
+
+    var $errorMsg = $('#errorMsg');
+    if($errorMsg.val() != 0) {
+        Materialize.toast($errorMsg.val(), 3000);
+        setTimeout(function(){
+            location.href = $('#redirectUrl').val();
+        }, 3000);
+    }
 });

@@ -13,6 +13,7 @@ body {
 .seats {
   @include flex(1);
   margin: .875rem .5rem;
+  padding-bottom: 2rem;
   background-color: #e6e6e6;
   border-radius: .375rem;
   overflow: auto;
@@ -85,7 +86,8 @@ body {
         width: auto;
       }
       &.left, &.right {
-        width: 100%;
+        display: inline-block;
+        width: auto;
         padding: 0 1rem;
       }
     }
@@ -197,7 +199,7 @@ body {
   }
 
   .seatCharts-row.right .seatCharts-cell {
-    float: right;
+    float: left;
   }
 
   .seatCharts-space {
@@ -228,9 +230,9 @@ body {
       position: absolute;
       display: block;
       width: 100%;
-      top: 5.8rem;
+      top: 6.8rem;
       left: 2rem;
-      line-height: 1.625rem;
+      line-height: 1.7rem;
       text-align: left;
       .title {
         margin: .5rem auto;
@@ -246,10 +248,19 @@ body {
         }
       }
     }
-
+    #qrcode {
+      position: absolute;
+      display: block;
+      right: 1rem;
+      bottom: 1rem;
+      canvas {
+        width: 6.5rem;
+        height: 6.5rem;
+      }
+    }
     @media screen and (min-width:360px) and (max-width:383px) {
       .info {
-        top: 7.25rem;
+        top: 7.5rem;
         left: 2.5rem;
         line-height: 2rem;
         .title {
@@ -283,15 +294,15 @@ body {
     }
     @media screen and (min-width:412px) and (max-width:480px) {
       .info {
-        top: 6.5rem;
+        top: 7.5rem;
         left: 2rem;
         line-height: 1.875rem;
         .title {
           margin: .5rem auto;
-          font-size: 1.325rem;
+          font-size: 1.5rem;
         }
         p {
-          font-size: 1.125rem;
+          font-size: 1.25rem;
           &.green {
             margin-top: 1rem;
           }
@@ -332,23 +343,23 @@ body {
         }
       }
     }
-    @media screen and (width: 375px) and (height: 627px) {
-      .info {
-        top: 5.8rem;
-        left: 2rem;
-        line-height: 1.625rem;
-        .title {
-          margin: .5rem auto;
-          font-size: 1.25rem;
-        }
-        p {
-          font-size: 1rem;
-          &.green {
-            margin-top: 1rem;
-          }
-        }
-      }
-    }
+    //@media screen and (width: 375px) and (height: 627px) {
+    //  .info {
+    //    top: 5.8rem;
+    //    left: 2rem;
+    //    line-height: 1.625rem;
+    //    .title {
+    //      margin: .5rem auto;
+    //      font-size: 1.25rem;
+    //    }
+    //    p {
+    //      font-size: 1rem;
+    //      &.green {
+    //        margin-top: 1rem;
+    //      }
+    //    }
+    //  }
+    //}
 
   }
 
@@ -387,6 +398,11 @@ body {
       border-radius: .1875rem;
       font-size: 1.25rem;
       color: #ffffff
+    }
+    button[disabled] {
+      opacity: .7;
+      background: url("../images/btn-disabled-bg.png") repeat-x;
+      background-size: contain;
     }
   }
   .tips {

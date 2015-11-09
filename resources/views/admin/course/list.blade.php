@@ -38,6 +38,7 @@
                 <th>星期</th>
                 <th>描述</th>
                 <th>注意事项</th>
+                <th>状态</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -54,8 +55,15 @@
                 <td>{{ $course->week }}</td>
                 <td>{{ $course->description }}</td>
                 <td>{{ $course->needing_attention }}</td>
+                @if( $course->status === 'pending')
+                <td><span style="color:red">待发布</span></td>
+                @else
+                <td><span style="color:green">已发布</span></td>
+                @endif
                 <td>
-                    {{--<div data-id="editCourseBtn" class="ui blue button">编 辑</div>--}}
+                    @if( $course->status === 'pending')
+                        <div data-id="publishCourseBtn" class="ui blue button">发 布</div>
+                    @endif
                     <div data-id="deleteCourseBtn" class="ui red button">删 除</div>
                 </td>
             </tr>

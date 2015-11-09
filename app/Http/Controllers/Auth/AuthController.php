@@ -70,6 +70,7 @@ class AuthController extends Controller
         } catch(ModelNotFoundException $e) {
             $values = [
                 'name' => $name,
+                'nickname' => $name,
                 'mobile' => $mobile
             ];
 

@@ -17,25 +17,29 @@
     <div class="seats">
         <div class="header">
             <div class="info">
-                <div class="title">功能教室</div>
-                <div class="date">今天7月14日 周一 15:00</div>
-                <button>确定</button>
+                <div class="title">{{ $course->classroom->name }}</div>
+                <div class="date">{{ $course->classDateTime() }}</div>
+                <button type="button" class="btn-reserve">确定</button>
             </div>
             <div id="legend"></div>
         </div>
-        <div id="seat-map">
-            <div class="front">功能教室教练区</div>
+        <div id="seat-map" data-map="{{ $course->classroom->seats_map }}" data-seats="{{ $course->classroom->seats }}" data-unavailable="{{ $course->unavailable() }}">
+            <div class="front">{{ $course->classroom->name }}教练区</div>
         </div>
     </div>
-    <form method="post" action="" class="hide">
-        <input type="hidden" id="selected-seats" name="seats">
+    <form method="post" action="{{ route('reserves.store') }}" class="hide">
+        {{ csrf_field() }}
+        <input type="hidden" id="selected-seats" name="seat_number">
+        <input type="hidden" name="course_id" value="{{ $course->id }}">
     </form>
+    <input type="hidden" id="errorMsg" value="{{ session('error') }}">
+    <input type="hidden" id="redirectUrl" value="{{ session('redirectUrl') }}">
 @endsection
 
 @section('end')
 @parent
 <script>
-    $script.ready('bundle', function(){
+    $script.ready(['bundle', 'material'], function(){
         $script(['{{ asset('assets/webpack/mobile/courses/reserve.js')  }}']);
     })
 </script>

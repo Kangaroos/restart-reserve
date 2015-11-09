@@ -18,7 +18,10 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
             courseDetail.remove();
         }
 
-        dust.render(detailTmpl, {}, function(err, result) {
+        var course = $(this).data('course');
+        course.coach = $(this).data('coach');
+
+        dust.render(detailTmpl, course, function(err, result) {
             document.body.insertAdjacentHTML('beforeend', result);
 
             $('.course-detail .close-icon').hammer().on('tap', function() {

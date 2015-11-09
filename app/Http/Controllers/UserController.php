@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Reserve;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -11,11 +12,14 @@ class UserController extends Controller
         return view('mobile.members');
     }
 
-    public function getMembersReserve() {
-        return view('mobile.members.reserve');
+    public function getMembersReserve(Request $request) {
+        $user = $request->user();
+        $reserves = $user->reserves;
+        return view('mobile.members.reserve', compact('reserves'));
     }
 
-    public function getMembersReserveDetail() {
-        return view('mobile.members.reserve-detail');
+    public function getMembersReserveDetail(Request $request, $id) {
+        $reserve = Reserve::find($id);
+        return view('mobile.members.reserve-detail', compact('reserve'));
     }
 }

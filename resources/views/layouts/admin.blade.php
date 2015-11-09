@@ -21,14 +21,8 @@
         <a class="item" href="{{ url('/admin/courses') }}">
             <i class="student icon"></i> <b>课程管理</b>
         </a>
-        <a class="item" href="{{ url('/admin/courses/publish') }}">
-            <i class="student icon"></i> <b>课程发布</b>
-        </a>
         <a class="item" href="{{ url('/admin/reserves') }}">
             <i class="call icon"></i> <b>预约管理</b>
-        </a>
-        <a class="item" href="{{ url('/admin/order') }}">
-            <i class="ordered list icon"></i> <b>订单管理</b>
         </a>
         <a class="item" href="{{ url('/admin/users/permissions') }}">
             <i class="privacy icon"></i> <b>账号权限</b>

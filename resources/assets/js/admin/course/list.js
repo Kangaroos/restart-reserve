@@ -302,4 +302,39 @@ define(['jquery', 'dust', '$script', 'moment'], function($, dust, $script, momen
             }
         });
     });
+
+    $('div[data-id="publishCourseBtn"]').on('click', function(e) {
+        var tr = $(this).closest('tr'),courseId = tr.data('id');
+        swal({
+            title: "提示",
+            text: "确定要发布该课程，发布后微信端页面就会显示此课程?",
+            type: "warning",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "确认",
+            cancelButtonText: "取消"
+        }, function(isConfirm){
+            if (isConfirm) {
+                $.ajax({
+                    url: ['/admin/courses/', courseId].join(''),
+                    type: 'PUT',
+                    dataType: 'json',
+                    data: {
+                        status: 'approved'
+                    }
+                }).done(function(ret){
+                    swal({
+                        title: "发布成功",
+                        text: "1 秒后返回...",
+                        timer: 1000,
+                        showConfirmButton: false
+                    }, function() {
+                        window.location.reload();
+                    });
+                });
+            }
+        });
+    });
 });

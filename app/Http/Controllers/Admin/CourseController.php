@@ -66,10 +66,6 @@ class CourseController extends Controller
     }
 
     public function update(Request $request, $id){
-        $this->validate($request, [
-            'name' => 'required'
-        ]);
-
         $courses = Course::find($id);
         $courses->fill($request->all());
 

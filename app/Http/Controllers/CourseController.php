@@ -13,29 +13,25 @@ class CourseController extends Controller
 {
     public function getCoursesByStoreId(Request $request, $id) {
         $dates = array();
-        $now = Carbon::now();
-        $dates['today'] = '今天'.$now->format('m-d');
-        $dates['tomorrow'] = '明天'.$now->addDays(1)->format('m-d');
-        $dates['day_after_tomorrow'] = '后天'.$now->addDays(1)->format('m-d');
+        $courses = array();
+        $today = Carbon::today();
+        $tomorrow = Carbon::tomorrow();
+        $day_after_tomorrow = Carbon::tomorrow()->addDay();
+
+        $dates['today'] = '今天'.$today->format('m-d');
+        $dates['tomorrow'] = '明天'.$tomorrow->format('m-d');
+        $dates['day_after_tomorrow'] = '后天'.$day_after_tomorrow->format('m-d');
 
         $store = Store::find($id);
-        return view('mobile.courses', compact('store', 'dates'));
+
+        $courses['today'] = Course::where('class_date', $today->format('Y-m-d'))->where('status', 'approved')->orderBy('created_at', 'desc')->get();
+        $courses['tomorrow'] = Course::where('class_date', $tomorrow->format('Y-m-d'))->where('status', 'approved')->orderBy('created_at', 'desc')->get();
+        $courses['day_after_tomorrow'] = Course::where('class_date', $day_after_tomorrow->format('Y-m-d'))->where('status', 'approved')->orderBy('created_at', 'desc')->get();
+        return view('mobile.courses', compact('store', 'courses', 'dates'));
     }
 
-    public function getCourseReserveById(Request $request) {
-        return view('mobile.courses.reserve');
+    public function getCourseReserveById(Request $request, $id) {
+        $course = Course::find($id);
+        return view('mobile.courses.reserve', compact('course'));
     }
-
-    public function getCourseReserveResultById(Request $request, $id) {
-        return view('mobile.courses.reserve-result');
-    }
-
-    public function show(Request $request, $id) {
-//        $course = Course::find($id);
-//        $course = array();
-//        return view('mobile.courses.show', compact('course'));
-        return view('mobile.courses.show');
-    }
-
-
 }

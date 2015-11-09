@@ -10,7 +10,7 @@
         <div class="logo">
             <img src="{{ asset('/assets/images/restart-logo.png') }}" title="锐思达健身">
         </div>
-        <a class="user" href="#"></a>
+        <a class="user" href="{{ route('members') }}"></a>
     </header>
     <nav class="nav">
         <div class="title">锐思达课程预约</div>

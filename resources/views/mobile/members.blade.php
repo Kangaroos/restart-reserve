@@ -18,14 +18,14 @@
     <div class="member-info">
         <img src="{{ asset('assets/images/member-center-bg.jpg') }}">
         <ul>
-            <li>{{ Auth::user()->name }}（年卡会员）</li>
+            <li>{{ Auth::user()->name }}</li>
             <li>{{ Auth::user()->mobile }}</li>
             <li>{{ Auth::user()->card_number }}</li>
         </ul>
     </div>
     <div class="members-menu">
         <div class="content">
-            <a class="item" href="#">
+            <a class="item" href="{{ route('members.reserve') }}">
                 <span>我的预约</span>
                 <i class="arrow-right-green-circle"></i>
             </a>
