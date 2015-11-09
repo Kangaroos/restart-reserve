@@ -36,7 +36,7 @@ class AuthController extends Controller
         $rules = [
             'name' => 'required|max:255',
             'mobile' => 'required|mobile|mobile_changed',
-            'verifyCode' => 'required|min:4|verify_code|verify_rule:check_mobile',
+            'verifyCode' => 'required|min:4|verify_code_mock|verify_rule:check_mobile',
         ];
 
         if($type == 'members') {

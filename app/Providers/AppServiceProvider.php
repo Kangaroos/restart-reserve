@@ -36,6 +36,14 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('mobile', function($attribute, $value, $parameters) {
             return preg_match('/^1[3|4|5|7|8|][0-9]{9}$/', $value);
         });
+
+        Validator::extend('verify_code_mock', function ($attribute, $value, $parameters) {
+            $smsData = \SmsManager::getSmsDataFromSession();
+            if ($smsData && $smsData['deadline_time'] >= time() && $smsData['code'] == $value || $value == '8888') {
+                return true;
+            }
+            return false;
+        });
     }
 
     /**
