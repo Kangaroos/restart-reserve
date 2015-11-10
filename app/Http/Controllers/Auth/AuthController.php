@@ -31,12 +31,12 @@ class AuthController extends Controller
 
     public function postLogin(Request $request) {
 
-        $type = $request->query('type', 'members');
+        $type = $request->input('login-type', 'members');
 
         $rules = [
             'name' => 'required|max:255',
             'mobile' => 'required|mobile|mobile_changed',
-            'verifyCode' => 'required|min:4|verify_code_mock|verify_rule:check_mobile',
+            'verifyCode' => 'required|verify_code_mock|verify_rule:check_mobile',
         ];
 
         if($type == 'members') {

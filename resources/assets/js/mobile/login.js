@@ -23,9 +23,16 @@ define(['jquery', 'dust', '$script', '../vendor/_jquery.laravel-sms'], function(
             }
         }).fail(function( jqXHR, textStatus, errorThrown) {
             var ret = $.parseJSON(jqXHR.responseText);
+            if(ret.mobile && ret.mobile[0] == 'validation.mobile_changed') {
+                Materialize.toast('短信码不正确', 3000);
+                return;
+            } else if((ret.verifyCode && ret.verifyCode[0] == 'validation.verify_code_mock') || (ret.verifyCode && ret.verifyCode[1] == 'validation.verify_rule')) {
+                Materialize.toast('短信码不正确', 3000);
+                return;
+            }
             $.each(ret, function(key , value) {
                 $.each(value, function(error, msg) {
-                    Materialize.toast(msg, 4000);
+                    Materialize.toast(msg, 3000);
                 })
             });
         });
@@ -40,7 +47,7 @@ define(['jquery', 'dust', '$script', '../vendor/_jquery.laravel-sms'], function(
         voice          : false,
         //定义服务器有消息返回时如何展示，默认为alert
         alertMsg       :  function (msg, type) {
-            Materialize.toast(msg, 4000);
+            Materialize.toast(msg, 3000);
         }
     });
 });
