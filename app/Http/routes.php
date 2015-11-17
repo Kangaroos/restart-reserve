@@ -58,6 +58,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
     Route::get('course/check', 'CourseController@checkCourse');
     Route::resource('courses', 'CourseController');
 
+    Route::put('reserves/{id}/verify', ['uses' => 'ReserveController@verify']);
     Route::resource('reserves', 'ReserveController');
 
     Route::resource('users', 'UserController');

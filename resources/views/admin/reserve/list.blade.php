@@ -14,9 +14,9 @@
                 </div>
             </h5>
         </div>
-        <div class="right item">
-            <button id="createReserveBtn" class="ui blue button">新增预约</button>
-        </div>
+        {{--<div class="right item">--}}
+            {{--<button id="createReserveBtn" class="ui blue button">新增预约</button>--}}
+        {{--</div>--}}
     </div>
     <div id="content" class="ui basic segment">
     @if (count($reserves) === 0)
@@ -46,9 +46,11 @@
                 <td>{{ $reserve->displayStatus() }}</td>
                 <td>{{ $reserve->created_at }}</td>
                 <td>
+                    @if($reserve->status == 'verify')
                     {{--<div data-id="editReserveBtn" class="ui blue button">编 辑</div>--}}
                     <div data-id="verifyReserveBtn" class="ui green button">核 销</div>
                     <div data-id="cancelReserveBtn" class="ui gray button">取 消</div>
+                    @endif
                     <div data-id="deleteReserveBtn" class="ui red button">删 除</div>
                 </td>
             </tr>

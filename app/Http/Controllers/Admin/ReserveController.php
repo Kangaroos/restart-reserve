@@ -20,29 +20,34 @@ class ReserveController extends Controller
 
         return view('admin.reserve.list', compact('reserves', 'query'));
     }
-    public function show($id) {
-        $reserves = Reserve::find($id);
-        return response()->json($reserves);
+//
+//    public function show($id) {
+//        $reserves = Reserve::find($id);
+//        return response()->json($reserves);
+//    }
+
+//    public function store(Request $request) {
+//        $reserves = new Reserve;
+//        $reserves->fill($request->all());
+//
+//        $reserves->save();
+//
+//        return response()->json(['id' => $reserves->id]);
+//    }
+
+    public function verify(Request $request, $id){
+        $reserve = Reserve::find($id);
+
+        if($reserve->order_no == $request->input('order_no')) {
+            $reserve->status = 'complete';
+            $reserve->save();
+            return response()->json(['id' => $reserve->id]);
+        } else {
+            return response()->json(['id' => $reserve->id, 'error' => '核销码不正确']);
+        }
     }
 
-    public function store(Request $request) {
-//        $this->validate($request, [
-//            'name' => 'required'
-//        ]);
-
-        $reserves = new Reserve;
-        $reserves->fill($request->all());
-
-        $reserves->save();
-
-        return response()->json(['id' => $reserves->id]);
-    }
-
-    public function update(Request $request, $id){
-//        $this->validate($request, [
-//            'name' => 'required'
-//        ]);
-
+    public function update(Request $request, $id) {
         $reserves = Reserve::find($id);
         $reserves->fill($request->all());
 

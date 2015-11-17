@@ -21,4 +21,12 @@ class UserController extends Controller
 
         return view('admin.user.list', compact('users', 'query'));
     }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+
+        $user->delete();
+        return response()->json(['id' => $id]);
+    }
 }
