@@ -136,4 +136,31 @@ define(['jquery', 'dust', '$script'], function($, dust, $script) {
             }
         });
     });
+
+    $('#exportUserBtn').on('click', function(e) {
+        swal({
+            title: "提示",
+            text: "确定导出所有会员数据?",
+            type: "warning",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "确认",
+            cancelButtonText: "取消"
+        }, function(isConfirm){
+            if (isConfirm) {
+                window.open('/admin/users/export');
+                swal({
+                    title: "导出成功",
+                    text: "1 秒后返回...",
+                    timer: 1000,
+                    showConfirmButton: false
+                }, function() {
+                    window.location.reload();
+                });
+            }
+        });
+    });
+
 });

@@ -53,6 +53,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
     Route::resource('stores', 'StoreController');
 
     Route::resource('classrooms', 'ClassroomController');
+
+    Route::get('coaches/export', ['uses' => 'CoachController@exportExcel']);
     Route::resource('coaches', 'CoachController');
 
     Route::get('course/check', 'CourseController@checkCourse');
@@ -61,6 +63,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
     Route::put('reserves/{id}/verify', ['uses' => 'ReserveController@verify']);
     Route::resource('reserves', 'ReserveController');
 
+    Route::get('users/export', ['uses' => 'UserController@exportExcel']);
     Route::resource('users', 'UserController');
 
     Route::get('/', ['uses' => 'HomeController@getIndex']);

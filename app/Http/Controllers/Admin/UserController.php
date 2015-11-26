@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Excel\UserListExport;
 
 class UserController extends Controller
 {
@@ -28,5 +29,15 @@ class UserController extends Controller
 
         $user->delete();
         return response()->json(['id' => $id]);
+    }
+
+    public function exportExcel(UserListExport $export) {
+        return $export->sheet('会员列表', function($sheet)
+        {
+            $sheet->row(1, array(
+                '编号', '姓名', '昵称', '电话', '会员卡号', '爽约次数', '会员等级', '状态', '创建时间', '更新时间'
+            ));
+            $sheet->fromModel(User::all(), null, 'A2', false, false);
+        })->download('xlsx');
     }
 }

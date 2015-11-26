@@ -16,9 +16,9 @@
         </div>
         <div class="right item">
             <div class="ui buttons">
-                <button id="importUserBtn" class="ui button">导入用户</button>
+                <button type="button" id="importUserBtn" class="ui button">导入用户</button>
                 <div class="or"></div>
-                <button id="exportUserBtn" class="ui positive button">导出用户</button>
+                <button type="button" id="exportUserBtn" class="ui positive button">导出用户</button>
             </div>
         </div>
     </div>

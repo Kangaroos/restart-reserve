@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Coach;
+use App\Excel\CoachListExport;
 
 class CoachController extends Controller
 {
@@ -56,5 +57,15 @@ class CoachController extends Controller
 
         $coaches->delete();
         return response()->json(['id' => $id]);
+    }
+
+    public function exportExcel(CoachListExport $export) {
+        return $export->sheet('教练列表', function($sheet)
+        {
+            $sheet->row(1, array(
+                '编号', '姓名', '描述', '状态', '创建时间', '更新时间'
+            ));
+            $sheet->fromModel(Coach::all(), null, 'A2', false, false);
+        })->download('xlsx');
     }
 }

@@ -13,7 +13,8 @@
         "caouecs/laravel4-lang": "~2.0",
         "overtrue/laravel-wechat":"2.0.*",
         "overtrue/laravel-lang": "dev-master",
-        "toplan/laravel-sms": "dev-master"
+        "toplan/laravel-sms": "dev-master",
+        "maatwebsite/excel": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

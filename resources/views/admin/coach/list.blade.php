@@ -15,7 +15,11 @@
             </h5>
         </div>
         <div class="right item">
-            <button id="createCoachBtn" class="ui blue button">新增教练</button>
+            <div class="ui buttons">
+                <button type="button" id="createCoachBtn" class="ui positive button">新增</button>
+                <div class="or"></div>
+                <button type="button" id="exportCoachBtn" class="ui button">导出</button>
+            </div>
         </div>
     </div>
     <div id="content" class="ui basic segment">
