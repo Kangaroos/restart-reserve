@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '教练管理 - 锐思达预约系统后台管理')
+@section('title', '用户管理 - 锐思达预约系统后台管理')
 @section('head')
 @parent
 @endsection

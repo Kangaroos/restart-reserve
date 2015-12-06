@@ -24,9 +24,9 @@ class CourseController extends Controller
 
         $store = Store::find($id);
 
-        $courses['today'] = Course::where('class_date', $today->format('Y-m-d'))->where('status', 'approved')->orderBy('created_at', 'desc')->get();
-        $courses['tomorrow'] = Course::where('class_date', $tomorrow->format('Y-m-d'))->where('status', 'approved')->orderBy('created_at', 'desc')->get();
-        $courses['day_after_tomorrow'] = Course::where('class_date', $day_after_tomorrow->format('Y-m-d'))->where('status', 'approved')->orderBy('created_at', 'desc')->get();
+        $courses['today'] = Course::where('store_id', $store->id)->where('class_date', $today->format('Y-m-d'))->where('status', 'approved')->orderBy('created_at', 'desc')->get();
+        $courses['tomorrow'] = Course::where('store_id', $store->id)->where('class_date', $tomorrow->format('Y-m-d'))->where('status', 'approved')->orderBy('created_at', 'desc')->get();
+        $courses['day_after_tomorrow'] = Course::where('store_id', $store->id)->where('class_date', $day_after_tomorrow->format('Y-m-d'))->where('status', 'approved')->orderBy('created_at', 'desc')->get();
         return view('mobile.courses', compact('store', 'courses', 'dates'));
     }
 

@@ -24,9 +24,14 @@
         <a class="item" href="{{ url('/admin/reserves') }}">
             <i class="call icon"></i> <b>预约管理</b>
         </a>
-        <a class="item" href="{{ url('/admin/users/permissions') }}">
-            <i class="privacy icon"></i> <b>账号权限</b>
+        @role('administrator1')
+        <a class="item" href="{{ url('/admin/roles') }}">
+            <i class="privacy icon"></i> <b>角色管理</b>
         </a>
+        <a class="item" href="{{ url('/admin/permissions') }}">
+            <i class="privacy icon"></i> <b>权限管理</b>
+        </a>
+        @endrole
         <a class="item" href="{{ url('/admin/users') }}">
             <i class="user icon"></i> <b>会员管理</b>
         </a>

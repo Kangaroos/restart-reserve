@@ -1,4 +1,5 @@
 <div class="ui modal">
+    <i class="close icon"></i>
     <div class="header">{header}</div>
     <div class="content">
         <form class="ui form" action="{action}" method="{method}" id="{formId}">

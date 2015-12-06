@@ -23,6 +23,25 @@ class UserController extends Controller
         return view('admin.user.list', compact('users', 'query'));
     }
 
+    public function show($id) {
+        $user = User::find($id);
+        return response()->json($user);
+    }
+
+    public function update(Request $request, $id){
+        $this->validate($request, [
+            'name' => 'required',
+            'mobile' => 'required',
+        ]);
+
+        $user = User::find($id);
+        $user->fill($request->all());
+
+        $user->save();
+
+        return response()->json(['id' => $user->id]);
+    }
+
     public function destroy($id)
     {
         $user = User::find($id);

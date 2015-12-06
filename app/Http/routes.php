@@ -66,6 +66,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
     Route::get('users/export', ['uses' => 'UserController@exportExcel']);
     Route::resource('users', 'UserController');
 
+    Route::resource('roles', 'RoleController');
+
     Route::get('/', ['uses' => 'HomeController@getIndex']);
 });
 

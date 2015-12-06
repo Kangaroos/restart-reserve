@@ -27,8 +27,8 @@ class CourseController extends Controller
     }
 
     public function show($id) {
-        $courses = Course::find($id);
-        return response()->json($courses);
+        $course = Course::find($id);
+        return response()->json($course);
     }
 
     public function store(Request $request) {

@@ -4,8 +4,12 @@
     <div class="content">
         <form class="ui form" action="{action}" method="{method}" id="{formId}">
             <div class="field">
-                <label>教练名称</label>
-                <input type="text" name="name" placeholder="请输入教练名称" value="{name}">
+                <label>角色名称</label>
+                <input type="text" name="name" placeholder="请输入姓名" value="{name}">
+            </div>
+            <div class="field">
+                <label>Slug</label>
+                <input type="text" name="slug" placeholder="请输入Slug" value="{slug}">
             </div>
             <div class="field">
                 <label>描述</label>
