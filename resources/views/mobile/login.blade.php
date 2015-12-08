@@ -36,11 +36,11 @@
                 </div>
                 <div class="control">
                     <label>短信码</label>
-                    <input type="number" class="otp" maxlength="4" name="verifyCode">
+                    <input type="tel" class="otp" maxlength="4" name="verifyCode">
                     <button id="sendVerifySmsButton" class="otp-btn">点击获取</button>
                 </div>
                 <div class="control">
-                    <button type="submit">提交</button>
+                    <button type="button" id="postFormBtn">提交</button>
                 </div>
             </form>
         </div>
@@ -62,11 +62,11 @@
                 </div>
                 <div class="control">
                     <label>短信码</label>
-                    <input type="number" class="otp" maxlength="4" name="verifyCode">
+                    <input type="tel" class="otp" maxlength="4" name="verifyCode">
                     <button id="sendVerifySmsButton" class="otp-btn">点击获取</button>
                 </div>
                 <div class="control">
-                    <button type="submit">提交</button>
+                    <button type="button" id="postFormBtn">提交</button>
                 </div>
             </form>
         </div>

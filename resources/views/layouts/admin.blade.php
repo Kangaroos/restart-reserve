@@ -24,7 +24,7 @@
         <a class="item" href="{{ url('/admin/reserves') }}">
             <i class="call icon"></i> <b>预约管理</b>
         </a>
-        @role('administrator1')
+        @role('administrator')
         <a class="item" href="{{ url('/admin/roles') }}">
             <i class="privacy icon"></i> <b>角色管理</b>
         </a>

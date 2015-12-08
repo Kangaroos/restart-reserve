@@ -9,9 +9,8 @@ define(['jquery', 'dust', '$script', '../vendor/_jquery.laravel-sms'], function(
         location.href = $(this).data('url');
     });
 
-    $('form').on('submit', function(e) {
-        e.preventDefault();
-        var $form = $(this);
+    $('#postFormBtn').hammer().on('tap', function(e) {
+        var $form = $('form');
         $.ajax({
             url: $form.attr('action'),
             method: $form.attr('method'),
