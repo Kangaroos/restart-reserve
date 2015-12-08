@@ -49,6 +49,7 @@
         @endforeach
             </tbody>
         </table>
+        {!! (new Landish\Pagination\SemanticUI($coaches))->render() !!}
     @endif
     </div>
 @endsection

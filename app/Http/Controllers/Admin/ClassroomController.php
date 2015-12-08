@@ -17,7 +17,7 @@ class ClassroomController extends Controller
         $orderColumn = $request->get('sort_up', $request->get('sort_down', 'created_at'));
         $direction   = $request->get('sort_up') ? 'asc' : 'desc' ;
 
-        $classrooms = Classroom::orderBy($orderColumn, $direction)->paginate(999);
+        $classrooms = Classroom::orderBy($orderColumn, $direction)->paginate(8);
 
         $stores = json_encode(DB::table('stores')->where('deleted_at', null)->select('id', 'name')->get());
 

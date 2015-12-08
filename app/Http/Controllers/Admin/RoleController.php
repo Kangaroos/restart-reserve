@@ -15,7 +15,7 @@ class RoleController extends Controller
         $orderColumn = $request->get('sort_up', $request->get('sort_down', 'created_at'));
         $direction   = $request->get('sort_up') ? 'asc' : 'desc' ;
 
-        $roles = Role::orderBy($orderColumn, $direction)->paginate(999);
+        $roles = Role::orderBy($orderColumn, $direction)->paginate(8);
 
         return view('admin.role.list', compact('roles', 'query'));
     }

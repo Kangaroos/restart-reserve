@@ -47,6 +47,7 @@
         @endforeach
             </tbody>
         </table>
+        {!! (new Landish\Pagination\SemanticUI($classrooms))->render() !!}
     @endif
     </div>
     <input type="hidden" id="stores" value="{{ $stores }}">

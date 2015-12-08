@@ -16,7 +16,7 @@ class ReserveController extends Controller
         $orderColumn = $request->get('sort_up', $request->get('sort_down', 'created_at'));
         $direction   = $request->get('sort_up') ? 'asc' : 'desc' ;
 
-        $reserves = Reserve::orderBy($orderColumn, $direction)->paginate(999);;
+        $reserves = Reserve::orderBy($orderColumn, $direction)->paginate(8);;
 
         return view('admin.reserve.list', compact('reserves', 'query'));
     }

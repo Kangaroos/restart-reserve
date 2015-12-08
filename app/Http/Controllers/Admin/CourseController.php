@@ -18,7 +18,7 @@ class CourseController extends Controller
         $orderColumn = $request->get('sort_up', $request->get('sort_down', 'created_at'));
         $direction   = $request->get('sort_up') ? 'asc' : 'desc' ;
 
-        $courses = Course::orderBy($orderColumn, $direction)->paginate(999);
+        $courses = Course::orderBy($orderColumn, $direction)->paginate(8);
 
         $stores = json_encode(DB::table('stores')->where('deleted_at', null)->select('id', 'name')->get());
         $coaches = json_encode(DB::table('coaches')->where('deleted_at', null)->select('id', 'name')->get());

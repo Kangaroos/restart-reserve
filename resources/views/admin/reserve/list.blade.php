@@ -57,6 +57,7 @@
         @endforeach
             </tbody>
         </table>
+        {!! (new Landish\Pagination\SemanticUI($reserves))->render() !!}
     @endif
     </div>
 @endsection

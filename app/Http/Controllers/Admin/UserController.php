@@ -18,7 +18,7 @@ class UserController extends Controller
 
         $users = User::whereHas('roles', function ($query) {
             $query->where('slug', 'member');
-        })->orderBy($orderColumn, $direction)->paginate(999);
+        })->orderBy($orderColumn, $direction)->paginate(8);
 
         return view('admin.user.list', compact('users', 'query'));
     }

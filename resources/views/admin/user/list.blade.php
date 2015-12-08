@@ -62,6 +62,7 @@
         @endforeach
             </tbody>
         </table>
+        {!! (new Landish\Pagination\SemanticUI($users))->render() !!}
     @endif
     </div>
 @endsection
