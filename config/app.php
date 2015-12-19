@@ -152,6 +152,8 @@ return [
         Toplan\Sms\SmsManagerServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+
+        GenTux\Jwt\Support\LaravelServiceProvider::class,
     ],
 
     /*

@@ -15,7 +15,8 @@
         "overtrue/laravel-lang": "dev-master",
         "toplan/laravel-sms": "1.0.2",
         "maatwebsite/excel": "~2.0",
-        "landish/pagination": "~1.0"
+        "landish/pagination": "~1.0",
+        "generationtux/jwt-artisan": "^0.1.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
