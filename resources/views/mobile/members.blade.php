@@ -20,7 +20,13 @@
         <ul>
             <li>{{ Auth::user()->name }}</li>
             <li>{{ Auth::user()->mobile }}</li>
-            <li>{{ Auth::user()->card_number }}</li>
+            <li>
+                @if(empty(Auth::user()->card_number) === false)
+                    非会员
+                @else
+                    {{ Auth::user()->card_number }}
+                @endif
+            </li>
         </ul>
     </div>
     <div class="members-menu">
@@ -29,18 +35,18 @@
                 <span>我的预约</span>
                 <i class="arrow-right-green-circle"></i>
             </a>
-            <a class="item" href="#">
-                <span>我的优惠券</span>
-                <i class="arrow-right-green-circle"></i>
-            </a>
-            <a class="item" href="#">
-                <span>我的抵用券</span>
-                <i class="arrow-right-green-circle"></i>
-            </a>
-            <a class="item" href="#">
-                <span>我的兴趣小组</span>
-                <i class="arrow-right-green-circle"></i>
-            </a>
+            {{--<a class="item" href="#">--}}
+                {{--<span>我的优惠券</span>--}}
+                {{--<i class="arrow-right-green-circle"></i>--}}
+            {{--</a>--}}
+            {{--<a class="item" href="#">--}}
+                {{--<span>我的抵用券</span>--}}
+                {{--<i class="arrow-right-green-circle"></i>--}}
+            {{--</a>--}}
+            {{--<a class="item" href="#">--}}
+                {{--<span>我的兴趣小组</span>--}}
+                {{--<i class="arrow-right-green-circle"></i>--}}
+            {{--</a>--}}
         </div>
     </div>
 @endsection

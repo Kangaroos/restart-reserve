@@ -11,7 +11,7 @@
     <meta name="description" content="@yield('description')" />
     <meta name="_token" content="{{ csrf_token() }}" />
     <title>@section('title')@show{{-- 页面标题 --}}</title>
-    <link rel="stylesheet" href="{{ asset('assets/semantic/semantic.css')  }}" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.1.6/semantic.min.css" />
     <link rel="stylesheet" href="//cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css" />
     <script>
         /* inlining code, make this better */
@@ -42,7 +42,7 @@
         $script([
             '//cdn.bootcss.com/moment.js/2.10.6/locale/zh-cn.js'
             ,'//cdn.bootcss.com/dustjs-helpers/1.7.3/dust-helpers.min.js'
-            , '{{ asset('assets/semantic/semantic.js')  }}'
+            , '//cdn.bootcss.com/semantic-ui/2.1.6/semantic.min.js'
         ], 'bundle');
     });
 </script>

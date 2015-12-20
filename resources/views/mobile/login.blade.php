@@ -16,8 +16,8 @@
     </header>
     @if($type == 'members')
         <div class="members-login">
-            <div class="members-tab" data-url="{{ url('/auth/login?type=members') }}">会员</div>
-            <div class="non-members-tab" data-url="{{ url('/auth/login?type=non-members') }}">非会员</div>
+            <div class="members-tab" data-url="{{ route('login', ['type' => 'members', 'redirectTo' => $redirectTo]) }}">会员</div>
+            <div class="non-members-tab" data-url="{{ route('login', ['type' => 'non-members', 'redirectTo' => $redirectTo]) }}">非会员</div>
             <form action="{{ route('login') }}" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="login-type" value="{{ $type }}" >
@@ -46,8 +46,8 @@
         </div>
     @else
         <div class="non-members-login">
-            <div class="members-tab" data-url="{{ url('/auth/login?type=members') }}">会员</div>
-            <div class="non-members-tab" data-url="{{ url('/auth/login?type=non-members') }}">非会员</div>
+            <div class="members-tab" data-url="{{ route('login', ['type' => 'members', 'redirectTo' => $redirectTo]) }}">会员</div>
+            <div class="non-members-tab" data-url="{{ route('login', ['type' => 'non-members', 'redirectTo' => $redirectTo]) }}">非会员</div>
             <form action="{{ route('login') }}" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="login-type" value="{{ $type }}" >

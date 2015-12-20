@@ -26,7 +26,7 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('/auth/login?redirectTo='.$redirectTo);
+                return redirect()->guest('/auth/login?redirectTo='.urlencode($redirectTo));
             }
         } else {
             $openid = $request->session()->get('openid');

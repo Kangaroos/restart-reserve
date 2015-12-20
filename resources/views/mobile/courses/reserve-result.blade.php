@@ -38,6 +38,7 @@
             <input type="hidden" name="course_name" value="{{ $reserve->course->name }}">
             <input type="tel" name="mobile" value="{{ $reserve->user->mobile }}" readonly>
             <button type="button" class="send-otp">发短信</button>
+            <button type="button" class="cancel-reserve">取消</button>
         </form>
         <div class="tips">
             *“请准时参加预约课程，若不能按时参加，请提前2个小时取消预约订单；若未取消订单，也未来参加预约课程，爽约次数达到3次，系统将自动关闭您的预约权限哦！”

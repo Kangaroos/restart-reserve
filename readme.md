@@ -13,10 +13,10 @@ brew update
 brew tap homebrew/dupes
 brew tap homebrew/versions
 brew tap homebrew/php
-brew install php56 php56-mcrypt php56-xdebug openssl mariadb nginx composer
+brew install php70 php70-mcrypt php70-xdebug openssl mariadb nginx composer
 ```
 
-* 修改 vi /usr/local/etc/php/5.6/php-fpm.conf，查找9000改成9001
+* 修改 vi /usr/local/etc/php/70/php-fpm.conf，查找9000改成9001
 
 * 创建服务脚本
 
@@ -24,7 +24,7 @@ brew install php56 php56-mcrypt php56-xdebug openssl mariadb nginx composer
 sudo cp -v /usr/local/opt/nginx/*.plist /Library/LaunchDaemons/
 sudo chown root:wheel /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 mkdir -p ~/Library/LaunchAgents
-ln -sfv /usr/local/opt/php56/homebrew.mxcl.php56.plist ~/Library/LaunchAgents/
+ln -sfv /usr/local/opt/php56/homebrew.mxcl.php70.plist ~/Library/LaunchAgents/
 ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
 ```
 
@@ -72,7 +72,7 @@ http {
 ```Bash
 mkdir /usr/local/etc/nginx/sites-available
 mkdir /usr/local/etc/nginx/sites-enabled
-vi /usr/local/etc/nging/sites-available/default
+vi /usr/local/etc/nginx/sites-available/default
 ```
 
 * 我的 default 配置,供参考
@@ -183,14 +183,22 @@ nginx.logs.error
 
 ```
 
-* 创建Mysql数据库和用户,详细请查看百度,google等教程
+* 创建Mysql数据库和用户
+```Bash
+mysql -u root -p
+CREATE DATABASE IF NOT EXISTS restartreserve DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+flush privileges;
+insert into mysql.user(Host,User,Password) values("localhost","restartreserve",password("your password"));
+flush privileges;
+grant all privileges on restartreserve.* to restartreserve@localhost identified by 'your password';
+flush privileges;
+```
 
 
 * 下载项目代码
 
 ```Bash
 git clone https://github.com/Kangaroos/restart-reserve.git
-chmod -R 777 restart-reserve/
 cd restart-reserve
 composer install
 npm install
@@ -201,22 +209,7 @@ vi .env
 
 * 编辑.env文件,修改APP_KEY值(随机生成一串), 修改DB相关配置为你的数据库配置
 
-```Bash
-cd restart-reserve/resources/assets/vendor
-git clone https://github.com/Kangaroos/Semantic-UI.git
-cd Semantic-UI
-npm install
-```
-
-* 新打开一个命令行
-
-```Bash
-cd restart-reserve
-gulp build-semantic
-gulp watch-semantic
-```
-
-* 另外再打开一个命令行
+* 打开一个命令行
 ```Bash
 cd restart-reserve
 gulp

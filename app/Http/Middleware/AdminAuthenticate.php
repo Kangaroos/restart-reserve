@@ -23,7 +23,7 @@ class AdminAuthenticate
                 return response('Unauthorized.', 401);
             } else {
                 $redirectTo = $request->getRequestUri();
-                return redirect()->guest('/admin/login?redirectTo='.$redirectTo);
+                return redirect()->guest('/admin/login?redirectTo='.urlencode($redirectTo));
             }
         }
 
