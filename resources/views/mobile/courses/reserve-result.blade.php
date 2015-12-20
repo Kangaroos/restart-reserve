@@ -36,13 +36,20 @@
             <input type="hidden" name="class_date" value="{{ date('m月d日',strtotime($reserve->course->class_date)) }}（{{ $reserve->course->week }}） {{ $reserve->course->class_time_begin }}">
             <input type="hidden" name="order_no" value="{{ $reserve->order_no }}">
             <input type="hidden" name="course_name" value="{{ $reserve->course->name }}">
-            <input type="tel" name="mobile" value="{{ $reserve->user->mobile }}" readonly>
-            <button type="button" class="send-otp">发短信</button>
-            <button type="button" class="cancel-reserve">取消</button>
-        </form>
-        <div class="tips">
-            *“请准时参加预约课程，若不能按时参加，请提前2个小时取消预约订单；若未取消订单，也未来参加预约课程，爽约次数达到3次，系统将自动关闭您的预约权限哦！”
-        </div>
+            @if(empty(Auth::user()->card_number) === true)
+            </form>
+            <div class="tips">
+                * “恭喜您预约成功,请等待工作人员与您联系!”
+            </div>
+            @else
+                <input type="tel" name="mobile" value="{{ $reserve->user->mobile }}" readonly>
+                <button type="button" class="send-otp">发短信</button>
+                <button type="button" class="cancel-reserve">取消</button>
+            </form>
+            <div class="tips">
+                * “请准时参加预约课程，若不能按时参加，请提前2个小时取消预约订单；若未取消订单，也未来参加预约课程，爽约次数达到3次，系统将自动关闭您的预约权限哦！”
+            </div>
+            @endif
     </div>
 @endsection
 

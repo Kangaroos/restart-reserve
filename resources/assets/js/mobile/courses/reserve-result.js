@@ -6,6 +6,10 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
 
     $('#qrcode').qrcode(sendSmsData.order_no);
 
+    $('.cancel-reserve').hammer().on('tap', function() {
+
+    });
+
     $('.send-otp').hammer().on('tap', function() {
         if($('.send-otp').attr('disabled')) {
             return;

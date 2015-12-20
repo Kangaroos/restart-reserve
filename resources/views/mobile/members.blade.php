@@ -20,13 +20,12 @@
         <ul>
             <li>{{ Auth::user()->name }}</li>
             <li>{{ Auth::user()->mobile }}</li>
-            <li>
-                @if(empty(Auth::user()->card_number) === false)
-                    非会员
-                @else
-                    {{ Auth::user()->card_number }}
-                @endif
-            </li>
+            @if(empty(Auth::user()->card_number) === true)
+            <li>非会员</li>
+            @else
+            <li>{{ Auth::user()->card_number }}</li>
+            <li>爽约次数: {{ Auth::user()->fails_to_perform }}</li>
+            @endif
         </ul>
     </div>
     <div class="members-menu">

@@ -359,6 +359,7 @@
 		//do this for each map row
 		$.each(settings.map, function(row, characters) {
 
+
 			var $row = $('<div></div>').addClass('seatCharts-row').addClass(settings.row.align);
 			if (settings.naming.left) {
 				$row.append(
