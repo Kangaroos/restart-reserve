@@ -20,11 +20,11 @@
         <div class="image">
             <img src="{{ asset('assets/images/white-block.png') }}">
             <div class="info">
-                <h5 class="title">{{ $reserve->course->name }}</h5>
-                <p>{{ $reserve->course->store->name }}</p>
-                <p>{{ $reserve->course->classroom->name }}</p>
-                <p class="green">预约{{ date('m月d日',strtotime($reserve->course->class_date)) }}（{{ $reserve->course->week }}）</p>
-                <p>预约教练：{{ $reserve->course->coach->name }}</p>
+                <h5 class="title">{{ $reserve->courseSchedule->course->name }}</h5>
+                <p>{{ $reserve->courseSchedule->course->store->name }}</p>
+                <p>{{ $reserve->courseSchedule->course->classroom->name }}</p>
+                <p class="green">预约{{ date('m月d日',strtotime($reserve->courseSchedule->class_date)) }}（{{ $reserve->courseSchedule->week }}）</p>
+                <p>预约教练：{{ $reserve->courseSchedule->course->coach->name }}</p>
                 <p>会员卡号：{{ $reserve->user->card_number }}</p>
                 <p>姓名：{{ $reserve->user->nickname }}</p>
                 <p>手机号码：{{ $reserve->user->mobile }}</p>

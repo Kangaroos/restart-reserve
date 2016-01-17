@@ -23,47 +23,89 @@
         </div>
     </div>
     <div id="content" class="ui basic segment">
-    @if (count($users) === 0)
-        <div>没有数据</div>
-    @elseif (count($users) >= 1)
-        <table class="ui selectable celled table">
-            <thead>
-            <tr>
-                <th>姓名</th>
-                <th>代用名</th>
-                <th>手机</th>
-                <th>会员卡号</th>
-                <th>爽约次数</th>
-                <th>会员等级</th>
-                <th>状态</th>
-                <th>注册时间</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-        @foreach($users as $user)
-            <tr data-id="{{ $user->id }}">
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->nickname }}</td>
-                <td>{{ $user->mobile }}</td>
-                <td>{{ $user->card_number }}</td>
-                <td>{{ $user->fails_to_perform }}</td>
-                <td>{{ $user->level }}</td>
-                <td>{{ $user->status }}</td>
-                <td>{{ $user->created_at }}</td>
-                <td>
-                    @if ($user->status == 'inactive')
-                    <div data-id="auditUserBtn" class="ui green button">审 核</div>
-                    @endif
-                    <div data-id="editUserBtn" class="ui blue button">编 辑</div>
-                    <div data-id="deleteUserBtn" class="ui red button">删 除</div>
-                </td>
-            </tr>
-        @endforeach
-            </tbody>
-        </table>
-        {!! (new Landish\Pagination\SemanticUI($users))->render() !!}
-    @endif
+        <div id="userTab" class="ui top attached tabular menu">
+            <a class="active item" data-tab="first">会员</a>
+            <a class="item" data-tab="second">非会员</a>
+        </div>
+        <div class="ui bottom attached active tab segment" data-tab="first">
+            @if (count($members) === 0)
+                <div>没有数据</div>
+            @elseif (count($members) >= 1)
+                <table class="ui selectable celled table">
+                    <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>代用名</th>
+                        <th>手机</th>
+                        <th>会员卡号</th>
+                        <th>爽约次数</th>
+                        <th>会员等级</th>
+                        <th>状态</th>
+                        <th>注册时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($members as $user)
+                        <tr data-id="{{ $user->id }}">
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->nickname }}</td>
+                            <td>{{ $user->mobile }}</td>
+                            <td>{{ $user->card_number }}</td>
+                            <td>{{ $user->fails_to_perform }}</td>
+                            <td>{{ $user->level }}</td>
+                            <td>{{ $user->status }}</td>
+                            <td>{{ $user->created_at }}</td>
+                            <td>
+                                @if ($user->status == 'inactive')
+                                    <div data-id="auditUserBtn" class="ui green button">审 核</div>
+                                @endif
+                                <div data-id="editUserBtn" class="ui blue button">编 辑</div>
+                                <div data-id="deleteUserBtn" class="ui red button">删 除</div>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                {!! (new Landish\Pagination\SemanticUI($members))->render() !!}
+            @endif
+        </div>
+        <div class="ui bottom attached tab segment" data-tab="second">
+            @if (count($nonMembers) === 0)
+                <div>没有数据</div>
+            @elseif (count($nonMembers) >= 1)
+                <table class="ui selectable celled table">
+                    <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>代用名</th>
+                        <th>手机</th>
+                        <th>爽约次数</th>
+                        <th>状态</th>
+                        <th>注册时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($nonMembers as $user)
+                        <tr data-id="{{ $user->id }}">
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->nickname }}</td>
+                            <td>{{ $user->mobile }}</td>
+                            <td>{{ $user->fails_to_perform }}</td>
+                            <td>{{ $user->status }}</td>
+                            <td>{{ $user->created_at }}</td>
+                            <td>
+                                <div data-id="editUserBtn" class="ui blue button">编 辑</div>
+                                <div data-id="deleteUserBtn" class="ui red button">删 除</div>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                {!! (new Landish\Pagination\SemanticUI($nonMembers))->render() !!}
+            @endif
+        </div>
     </div>
 @endsection
 

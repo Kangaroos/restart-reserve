@@ -3,10 +3,11 @@
     <div class="header">{header}</div>
     <div class="content">
         <form class="ui form" action="{action}" method="{method}" id="{formId}">
+            <input type="hidden" name="id" value="{id}">
             {!<h4 class="ui dividing header">门店基本信息</h4>!}
             <div class="field">
                 <label>课程名称</label>
-                <input type="text" name="name" placeholder="请输入课程名称" value="{name}">
+                <input type="text" name="name" placeholder="请输入课程名称">
             </div>
             <div class="field">
                 <label>所属门店

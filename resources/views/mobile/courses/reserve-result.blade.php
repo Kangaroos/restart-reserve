@@ -23,8 +23,8 @@
                 <h5 class="title">{{ $reserve->course->name }}</h5>
                 <p>{{ $reserve->course->store->name }}</p>
                 <p>{{ $reserve->course->classroom->name }}</p>
-                <p class="green">预约{{ date('m月d日',strtotime($reserve->course->class_date)) }}（{{ $reserve->course->week }}）</p>
-                <p>预约教练：{{ $reserve->course->coach->name }}</p>
+                <p class="green">预约{{ date('m月d日',strtotime($reserve->courseSchedule->class_date)) }}（{{ $reserve->courseSchedule->week }}）</p>
+                <p>预约教练：{{ $reserve->courseSchedule->course->coach->name }}</p>
                 <p>会员卡号：{{ $reserve->user->card_number }}</p>
                 <p>姓名：{{ $reserve->user->nickname }}</p>
                 <p>手机号码：{{ $reserve->user->mobile }}</p>
@@ -33,9 +33,9 @@
             <div id="qrcode"></div>
         </div>
         <form class="sms-form">
-            <input type="hidden" name="class_date" value="{{ date('m月d日',strtotime($reserve->course->class_date)) }}（{{ $reserve->course->week }}） {{ $reserve->course->class_time_begin }}">
+            <input type="hidden" name="class_date" value="{{ date('m月d日',strtotime($reserve->courseSchedule->class_date)) }}（{{ $reserve->courseSchedule->week }}） {{ $reserve->courseSchedule->course->class_time_begin }}">
             <input type="hidden" name="order_no" value="{{ $reserve->order_no }}">
-            <input type="hidden" name="course_name" value="{{ $reserve->course->name }}">
+            <input type="hidden" name="course_name" value="{{ $reserve->courseSchedule->course->name }}">
             @if(empty(Auth::user()->card_number) === true)
             </form>
             <div class="tips">

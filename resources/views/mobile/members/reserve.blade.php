@@ -19,9 +19,9 @@
     <div class="reserves">
         @foreach($reserves as $reserve)
         <div class="reserve">
-            <div class="title"><h5>{{ $reserve->course->store->name }} {{ $reserve->course->classroom->name }}</h5></div>
+            <div class="title"><h5>{{ $reserve->courseSchedule->course->store->name }} {{ $reserve->courseSchedule->course->classroom->name }}</h5></div>
             <div class="content">
-                <span class="date">{{ date('m月d日',strtotime($reserve->course->class_date)) }}（{{ $reserve->course->week }}）15:00</span>
+                <span class="date">{{ date('m月d日',strtotime($reserve->courseSchedule->class_date)) }}（{{ $reserve->courseSchedule->week }}）{{ $reserve->courseSchedule->course->class_time_begin }}</span>
                 @if($reserve->status == 'verify')
                     <button type="button" onclick="window.location = '{{ route('members.reserve.detail', $reserve->id) }}';">详情</button>
                 @elseif($reserve->status=='complete')

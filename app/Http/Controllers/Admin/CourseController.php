@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\CourseSchedule;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -28,41 +29,20 @@ class CourseController extends Controller
 
     public function show($id) {
         $course = Course::find($id);
-        return response()->json($course);
+        $courseSchedules = $course->schedules;
+        $course->toJson();
+        $course['schedules'] = $courseSchedules->toJson();
+        return response($course);
     }
 
     public function store(Request $request) {
-        $datas = $request->input('courses');
-        $datas = json_decode($datas,true);
+        $inputs = $request->all();
 
-        $ids = [];
+        $course = new Course;
+        $course->fill($inputs);
+        $course->save();
 
-        foreach($datas as $data) {
-            $data = array_except($data, ['_id']);
-            $course = new Course;
-            $course->fill($data);
-            $course->save();
-            array_push($ids,$course->id);
-        }
-
-        return $ids;
-    }
-
-    public function checkCourse(Request $request) {
-        $data = $request->all();
-        $courseLength = DB::table('courses')
-            ->where('classroom_id', '=', $data['classroom_id'])
-            ->where('class_date', '=', $data['class_date'])
-            ->Where(function ($query) use ($data) {
-                $query->where('class_time_begin', '<=', $data['class_time_begin'])
-                    ->where('class_time_end', '>=', $data['class_time_begin']);
-            })
-            ->Where(function ($query) use ($data) {
-                $query->where('class_time_begin', '<=', $data['class_time_end'])
-                    ->where('class_time_end', '>=', $data['class_time_end']);
-            })
-            ->count();
-        return $courseLength>0?response()->json(['status' => false, 'id' => $data['_id']]):response()->json(['status' => true, 'id' => $data['_id']]);
+        return $course->id;
     }
 
     public function update(Request $request, $id){
@@ -77,8 +57,57 @@ class CourseController extends Controller
     public function destroy($id)
     {
         $courses = Course::find($id);
-
+        $courses->schedules()->delete();
         $courses->delete();
+        return response()->json(['id' => $id]);
+    }
+
+    public function checkCourse(Request $request) {
+        $data = $request->all();
+        $courseLength = DB::table('courses')
+            ->leftJoin('course_schedules', 'courses.id', '=', 'course_schedules.course_id')
+            ->where('courses.classroom_id', '=', $data['classroom_id'])
+            ->where('course_schedules.class_date', '=', $data['class_date'])
+            ->Where(function ($query) use ($data) {
+                $query->where('courses.class_time_begin', '<=', $data['class_time_begin'])
+                    ->where('courses.class_time_end', '>=', $data['class_time_begin']);
+            })
+            ->Where(function ($query) use ($data) {
+                $query->where('courses.class_time_begin', '<=', $data['class_time_end'])
+                    ->where('courses.class_time_end', '>=', $data['class_time_end']);
+            })
+            ->count();
+        return $courseLength>0?response()->json(['status' => false]):response()->json(['status' => true]);
+    }
+
+    public function getCourseSchedules($id) {
+        $courseSchedules = CourseSchedule::where('course_id', $id)->get();
+        return response()->json($courseSchedules);
+    }
+
+    public function saveCourseSchedules(Request $request, $id) {
+        $schedule = $request->all();
+        $courseSchedule = new CourseSchedule;
+        $courseSchedule['course_id'] = $id;
+        $courseSchedule['status'] = 'approved';
+        $courseSchedule->fill($schedule);
+        $courseSchedule->save();
+        return $courseSchedule->id;
+    }
+
+    public function updateCourseSchedule(Request $request, $id) {
+        $courseSchedule = CourseSchedule::find($id);
+        $courseSchedule->fill($request->all());
+
+        $courseSchedule->save();
+
+        return response()->json(['id' => $courseSchedule->id]);
+    }
+
+    public function destroyCourseSchedule($id)
+    {
+        $courseSchedule = CourseSchedule::find($id);
+        $courseSchedule->delete();
         return response()->json(['id' => $id]);
     }
 }

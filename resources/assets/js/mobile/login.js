@@ -1,5 +1,4 @@
 define(['jquery', 'dust', '$script', '../vendor/_jquery.laravel-sms'], function($, dust, $script){
-    require('../components/_toasts');
 
     $('.members-tab').hammer().on('tap', function() {
         location.href = $(this).data('url');
@@ -11,6 +10,22 @@ define(['jquery', 'dust', '$script', '../vendor/_jquery.laravel-sms'], function(
 
     $('#postFormBtn').hammer().on('tap', function(e) {
         var $form = $('form');
+        var cardNumber = $('input[name=card_number]').val();
+        if(!/^[A-Za-z]{2}[0-9]{6}$/i.test(cardNumber)) {
+            sweetAlert("出错啦...", "会员卡号格式不正确", "error");
+            return;
+        }
+
+        if($('input[name=name]').val() == "") {
+            sweetAlert("出错啦...", "姓名不能为空", "error");
+            return;
+        }
+
+        if($('input[name=mobile]').val() == "") {
+            sweetAlert("出错啦...", "手机号码不能为空", "error");
+            return;
+        }
+
         $.ajax({
             url: $form.attr('action'),
             method: $form.attr('method'),
@@ -19,19 +34,21 @@ define(['jquery', 'dust', '$script', '../vendor/_jquery.laravel-sms'], function(
         }).done(function(data){
             if(data.success) {
                 location.href = data.redirectTo;
+            } else {
+                sweetAlert("友情提示", data.error, "info");
             }
         }).fail(function( jqXHR, textStatus, errorThrown) {
             var ret = $.parseJSON(jqXHR.responseText);
             if(ret.mobile && ret.mobile[0] == 'validation.mobile_changed') {
-                Materialize.toast('短信码不正确', 3000);
+                sweetAlert("出错啦...", "短信码不正确", "error");
                 return;
             } else if((ret.verifyCode && ret.verifyCode[0] == 'validation.verify_code_mock') || (ret.verifyCode && ret.verifyCode[1] == 'validation.verify_rule')) {
-                Materialize.toast('短信码不正确', 3000);
+                sweetAlert("出错啦...", "短信码不正确", "error");
                 return;
             }
             $.each(ret, function(key , value) {
                 $.each(value, function(error, msg) {
-                    Materialize.toast(msg, 3000);
+                    sweetAlert("出错啦...", msg, "error");
                 })
             });
         });
@@ -46,7 +63,7 @@ define(['jquery', 'dust', '$script', '../vendor/_jquery.laravel-sms'], function(
         voice          : false,
         //定义服务器有消息返回时如何展示，默认为alert
         alertMsg       :  function (msg, type) {
-            Materialize.toast(msg, 3000);
+            sweetAlert("出错啦...", msg, "error");
         }
     });
 });

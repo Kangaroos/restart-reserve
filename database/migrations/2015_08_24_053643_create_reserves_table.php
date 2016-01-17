@@ -16,7 +16,7 @@ class CreateReservesTable extends Migration
             $table->increments('id');
             $table->string('order_no')->unique(); //order  规则:yyyyMMdd + reserve_id
             $table->integer('user_id');
-            $table->integer('course_id');
+            $table->integer('course_schedule_id');
             $table->string('seat_number');
             $table->string('status')->default('verify'); // verify:待核销, complete:已核销, cancel:已取消
             $table->text('remark');

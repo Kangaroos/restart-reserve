@@ -355,11 +355,9 @@
 		}
 		
 		fn.append($headerRow);
-		
+		fn.append($('<div></div>').addClass('seatCharts-box'));
 		//do this for each map row
 		$.each(settings.map, function(row, characters) {
-
-
 			var $row = $('<div></div>').addClass('seatCharts-row').addClass(settings.row.align);
 			if (settings.naming.left) {
 				$row.append(
@@ -423,8 +421,7 @@
 					$('<div></div>').addClass('seatCharts-cell seatCharts-space')	
 				);
 			});
-			
-			fn.append($row);
+			fn.find('.seatCharts-box').append($row);
 		});
 	
 		//if there're any legend items to be rendered

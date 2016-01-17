@@ -77,7 +77,7 @@
 @section('end')
     @parent
     <script>
-        $script.ready(['bundle', 'material'], function(){
+        $script.ready(['bundle'], function(){
             $script(['{{ asset('assets/webpack/mobile/login.js')  }}']);
         })
     </script>

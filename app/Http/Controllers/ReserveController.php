@@ -17,10 +17,10 @@ class ReserveController extends Controller
 {
     public function store(Request $request) {
         $user = $request->user();
-        $data = $request->only(['course_id', 'seat_number']);
+        $data = $request->only(['course_schedule_id', 'seat_number']);
 
         try {
-            $reserve = Reserve::where('course_id', $data['course_id'])->firstOrFail();
+            $reserve = Reserve::where('course_schedule_id', $data['course_schedule_id'])->firstOrFail();
             return back()
                 ->withInput()
                 ->with('error', '对不起，该课程您已预约！3秒后为您跳转结果页...')
@@ -28,7 +28,7 @@ class ReserveController extends Controller
         } catch(ModelNotFoundException $e) {
             $reserve = Reserve::create([
                 'user_id' => $user->id,
-                'course_id' => $data['course_id'],
+                'course_schedule_id' => $data['course_schedule_id'],
                 'seat_number' => $data['seat_number']
             ]);
             $now = Carbon::create();

@@ -5,6 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use PhpParser\Node\Scalar\String_;
+use Illuminate\Support\Facades\DB;
 
 class Course extends Model
 {
@@ -31,20 +32,8 @@ class Course extends Model
         return $this->hasMany('App\Reserve');
     }
 
-    public function classDateTime()
-    {
-        $datetimeStr = "";
-        $date = Carbon::createFromTimestamp(strtotime($this->attributes['class_date']));
-        if($date->isToday()) {
-            $datetimeStr = '今天';
-        } else if($date->isTomorrow()) {
-            $datetimeStr = '明天';
-        } else if($date->toDateString() === Carbon::tomorrow()->addDay()->toDateString()) {
-            $datetimeStr = '后天';
-        }
-        $datetimeStr = $datetimeStr.$date->format('m月d日')." ".$this->attributes['week']." ".$this->attributes['class_time_begin'];
-
-        return $datetimeStr;
+    public function schedules() {
+        return $this->hasMany('App\CourseSchedule');
     }
 
     public function getClassTimeBeginAttribute() {
@@ -53,10 +42,6 @@ class Course extends Model
 
     public function getClassTimeEndAttribute() {
         return date('H:i', strtotime($this->attributes['class_time_end']));
-    }
-
-    public function getClassDateAttribute() {
-        return date('Y-m-d', strtotime($this->attributes['class_date']));
     }
 
     public function unavailable() {

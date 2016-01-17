@@ -60,13 +60,20 @@ class AuthController extends Controller
         try {
             $user = User::where('mobile', $mobile)->firstOrFail();
 
-            $token = JWTAuth::fromUser($user);
+            if($user->status == "active") {
+                $token = JWTAuth::fromUser($user);
 
-            $request->session()->put('jwt-token',$token);
+                $request->session()->put('jwt-token',$token);
 
-            $response['jwt-token'] = $token;
+                $response['jwt-token'] = $token;
 
-            Auth::login($user, true);
+                Auth::login($user, true);
+            } else {
+                $response['success'] = false;
+                $response['error'] = "第一次使用,请联系锐思达工作人员,完成会员身份审核";
+            }
+
+
         } catch(ModelNotFoundException $e) {
             $values = [
                 'name' => $name,
@@ -85,13 +92,19 @@ class AuthController extends Controller
 
             $user->assignRole($roleMember);
 
-            $token = JWTAuth::fromUser($user);
+            if($user->status == "active") {
+                $token = JWTAuth::fromUser($user);
 
-            $request->session()->put('jwt-token',$token);
+                $request->session()->put('jwt-token',$token);
 
-            $response['jwt-token'] = $token;
+                $response['jwt-token'] = $token;
 
-            Auth::login($user, true);
+                Auth::login($user, true);
+            } else {
+                $response['success'] = false;
+                $response['error'] = "第一次使用,请联系锐思达工作人员,完成会员身份审核";
+            }
+
         }
 
         return response()->json($response);

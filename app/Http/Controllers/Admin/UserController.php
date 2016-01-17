@@ -16,11 +16,15 @@ class UserController extends Controller
         $orderColumn = $request->get('sort_up', $request->get('sort_down', 'created_at'));
         $direction   = $request->get('sort_up') ? 'asc' : 'desc' ;
 
-        $users = User::whereHas('roles', function ($query) {
+        $members = User::whereNotNull('card_number')->whereHas('roles', function ($query) {
             $query->where('slug', 'member');
         })->orderBy($orderColumn, $direction)->paginate(8);
 
-        return view('admin.user.list', compact('users', 'query'));
+        $nonMembers = User::whereNull('card_number')->whereHas('roles', function ($query) {
+            $query->where('slug', 'member');
+        })->orderBy($orderColumn, $direction)->paginate(8);
+
+        return view('admin.user.list', compact('members', 'nonMembers', 'query'));
     }
 
     public function show($id) {

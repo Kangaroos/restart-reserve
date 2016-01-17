@@ -35,39 +35,39 @@
         </ul>
         <div class="divider"></div>
         <div class="today">
-            @foreach( $courses['today'] as $course)
+            @foreach( $courseSchedules['today'] as $courseSchedule)
             <div class="course">
-                <span class="name">{{ $course->name }}</span>
-                <span class="time">{{ $course->class_time_begin }}-{{ $course->class_time_end }}</span>
+                <span class="name">{{ $courseSchedule->course->name }}</span>
+                <span class="time">{{ $courseSchedule->course->class_time_begin }}-{{ $courseSchedule->course->class_time_end }}</span>
                 <span class="group">
-                    <a class="button detail" href="#" data-course="{{ $course }}" data-coach="{{ $course->coach }}">详情</a>
-                    <a class="button" href="{{ route('course.reserve', $course->id) }}">预约</a>
+                    <a class="button detail" href="#" data-course="{{ $courseSchedule->course }}" data-coach="{{ $courseSchedule->course->coach }}">详情</a>
+                    <a class="button" href="{{ route('course.reserve', $courseSchedule->id) }}">预约</a>
                 </span>
             </div>
             <div class="divider"></div>
             @endforeach
         </div>
         <div class="tomorrow show">
-            @foreach( $courses['tomorrow'] as $course)
+            @foreach( $courseSchedules['tomorrow'] as $courseSchedule)
             <div class="course">
-                <span class="name">{{ $course->name }}</span>
-                <span class="time">{{ $course->class_time_begin }}-{{ $course->class_time_end }}</span>
+                <span class="name">{{ $courseSchedule->course->name }}</span>
+                <span class="time">{{ $courseSchedule->course->class_time_begin }}-{{ $courseSchedule->course->class_time_end }}</span>
                 <span class="group">
-                    <a class="button detail" href="#" data-course="{{ $course }}" data-coach="{{ $course->coach }}">详情</a>
-                    <a class="button" href="{{ route('course.reserve', $course->id) }}">预约</a>
+                    <a class="button detail" href="#" data-course="{{ $courseSchedule->course }}" data-coach="{{ $courseSchedule->course->coach }}">详情</a>
+                    <a class="button" href="{{ route('course.reserve', $courseSchedule->id) }}">预约</a>
                 </span>
             </div>
             <div class="divider"></div>
             @endforeach
         </div>
         <div class="day-after-tomorrow">
-            @foreach( $courses['day_after_tomorrow'] as $course)
+            @foreach( $courseSchedules['day_after_tomorrow'] as $courseSchedule)
             <div class="course">
-                <span class="name">{{ $course->name }}</span>
-                <span class="time">{{ $course->class_time_begin  }}-{{ $course->class_time_end }}</span>
+                <span class="name">{{ $courseSchedule->course->name }}</span>
+                <span class="time">{{ $courseSchedule->course->class_time_begin  }}-{{ $courseSchedule->course->class_time_end }}</span>
                 <span class="group">
-                    <a class="button detail" href="#" data-course="{{ $course }}" data-coach="{{ $course->coach }}">详情</a>
-                    <a class="button" href="{{ route('course.reserve', $course->id) }}">预约</a>
+                    <a class="button detail" href="#" data-course="{{ $courseSchedule->course }}" data-coach="{{ $courseSchedule->course->coach }}">详情</a>
+                    <a class="button" href="{{ route('course.reserve', $courseSchedule->id) }}">预约</a>
                 </span>
             </div>
             <div class="divider"></div>

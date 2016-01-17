@@ -16,6 +16,5 @@
     </div>
     <div class="actions">
         <div class="ui deny button">{backText}</div>
-        <div class="ui blue approve button">{saveText}</div>
     </div>
 </div>

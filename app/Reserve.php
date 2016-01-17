@@ -8,16 +8,16 @@ class Reserve extends Model
 {
     protected $table = 'reserves';
 
-    protected $fillable = ['order_no', 'course_id', 'user_id', 'seat_number', 'status', 'remark'];
+    protected $fillable = ['order_no', 'course_schedule_id', 'user_id', 'seat_number', 'status', 'remark'];
 
     public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    public function course()
+    public function courseSchedule()
     {
-        return $this->belongsTo('App\Course');
+        return $this->belongsTo('App\CourseSchedule');
     }
 
     public function displayStatus() {

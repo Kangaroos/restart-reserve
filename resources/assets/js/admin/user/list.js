@@ -1,6 +1,6 @@
 define(['jquery', 'dust', '$script'], function($, dust, $script) {
     var formTmpl = require('../../../../templates/admin/user/_form.dust');
-
+    $('#userTab .item').tab();
     function formValid($form) {
         $form.form({
             fields: {
