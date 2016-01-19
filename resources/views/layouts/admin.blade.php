@@ -6,6 +6,7 @@
 @endsection
 @section('body')
     <div id="main-sidebar" class="ui inverted vertical thin sidebar menu">
+        @role('administrator')
         <a class="item" href="{{ url('/admin/stores') }}">
             <i class="building icon"></i> <b>门店管理</b>
         </a>
@@ -24,17 +25,28 @@
         <a class="item" href="{{ url('/admin/reserves') }}">
             <i class="call icon"></i> <b>预约管理</b>
         </a>
-        @role('administrator')
         <a class="item" href="{{ url('/admin/roles') }}">
             <i class="privacy icon"></i> <b>角色管理</b>
         </a>
         {{--<a class="item" href="{{ url('/admin/permissions') }}">--}}
             {{--<i class="privacy icon"></i> <b>权限管理</b>--}}
         {{--</a>--}}
-        @endrole
+
         <a class="item" href="{{ url('/admin/users') }}">
             <i class="user icon"></i> <b>会员管理</b>
         </a>
+        @endrole
+
+        @role('userManager')
+        <a class="item" href="{{ url('/admin/users') }}">
+            <i class="user icon"></i> <b>会员管理</b>
+        </a>
+        @endrole
+        @role('reserveManager')
+        <a class="item" href="{{ url('/admin/roles') }}">
+            <i class="privacy icon"></i> <b>角色管理</b>
+        </a>
+        @endrole
         {{--<a class="item" href="">--}}
             {{--<i class="database icon"></i> <b>数据管理</b>--}}
         {{--</a>--}}
