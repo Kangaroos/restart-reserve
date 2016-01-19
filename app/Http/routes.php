@@ -48,7 +48,7 @@ Route::group(['prefix' => 'wechat'], function () {
     Route::get('callback', ['as' => 'wechat.callback', 'uses' => 'WechatController@callback']);
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['admin.auth', 'acl'], 'is' => 'administrator'], function() {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['admin.auth', 'acl'], 'is' => 'administrator|userManager|reserveManager'], function() {
     Route::get('stores/{id}/classrooms', 'StoreController@getClassroomsByID');
     Route::post('stores/cover/{id}', 'StoreController@updateCover');
     Route::resource('stores', 'StoreController');
