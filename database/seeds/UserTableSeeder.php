@@ -42,13 +42,13 @@ class UserTableSeeder extends Seeder
 
         $roleRM = Role::create([
             'name' => 'ReserveManager',
-            'slug' => 'reserveManager',
+            'slug' => 'reservemanager',
             'description' => 'manage reserve'
         ]);
 
         $roleUM = Role::create([
             'name' => 'UserManager',
-            'slug' => 'userManager',
+            'slug' => 'usermanager',
             'description' => 'manage user'
         ]);
 
