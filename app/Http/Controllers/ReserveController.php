@@ -38,6 +38,13 @@ class ReserveController extends Controller
         return response()->redirectToRoute('reserve.result',['reserve' => $reserve]);
     }
 
+    public function cancelReserve(Request $request, $id) {
+        $reserve = Reserve::find($id);
+        $reserve->status = "cancel";
+        $reserve->save();
+        return response()->json(['success' => true]);
+    }
+
     public function getReserveResultById(Request $request, $id) {
         $reserve = Reserve::find($id);
         return view('mobile.courses.reserve-result', compact('reserve'));

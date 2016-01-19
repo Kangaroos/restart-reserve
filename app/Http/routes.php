@@ -31,6 +31,7 @@ Route::group(['prefix' => '/'], function () {
 
 Route::group(['prefix' => '/', 'middleware' => ['auth', 'acl'], 'is' => 'member'], function () {
     Route::get('courses/{id}/reserve', ['as' => 'course.reserve', 'uses' => 'CourseController@getCourseReserveById']);
+    Route::put('reserves/{id}/cancel', ['as' => 'reserve.cancel', 'uses' => 'ReserveController@cancelReserve']);
     Route::get('reserves/{id}', ['as' => 'reserve.result', 'uses' => 'ReserveController@getReserveResultById']);
     Route::post('reserves/send', ['as' => 'reserve.send', 'uses' => 'ReserveController@sendReserveSms']);
     Route::resource('reserves', 'ReserveController');

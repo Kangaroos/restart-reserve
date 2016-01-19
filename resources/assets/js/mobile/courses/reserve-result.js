@@ -1,16 +1,37 @@
 define(['jquery', 'dust', '$script'], function($, dust, $script){
 
-    require('../../components/_toasts');
-
     var sendSmsData = $.parseJSON($('.sms-form').serializeObject());
 
     $('#qrcode').qrcode(sendSmsData.order_no);
 
-    $('.cancel-reserve').hammer().on('tap', function() {
-
+    $('.cancel-reserve').on('click', function(e) {
+        swal({
+            title: "提示",
+            text: "是否取消预约课程?",
+            type: "warning",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "确认",
+            cancelButtonText: "取消"
+        }, function(isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: '/members/reserve/' + $('#reserveId').val() + "/cancel",
+                    method: 'PUT',
+                    dataType: 'json'
+                }).done(function(ret) {
+                    swal.close();
+                    location.href = "/members/reserve";
+                }).fail(function() {
+                    sweetAlert("出错啦...", "服务器君偷懒了，快去找管理员来修理他...", "error");
+                });
+            }
+        });
     });
 
-    $('.send-otp').hammer().on('tap', function() {
+    $('.send-otp').on('click', function() {
         if($('.send-otp').attr('disabled')) {
             return;
         }
@@ -20,9 +41,8 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
             dataType: 'json',
             data: sendSmsData
         }).done(function(ret) {
-            console.log(ret);
             $('.send-otp').attr('disabled', true);
-            Materialize.toast('短信发送成功！', 3000);
+            sweetAlert("提示...", "短信发送成功", "info");
         });
     });
 });

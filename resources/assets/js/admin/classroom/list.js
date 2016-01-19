@@ -91,7 +91,8 @@ define(['jquery', 'dust', '$script'], function($, dust, $script) {
                 document.body.insertAdjacentHTML('beforeend', result);
 
                 var $form = $('#' + formId);
-
+                $('select[name=store_id]').dropdown('set selected', ret.store_id);
+                $('select[name=seats_style]').dropdown('set selected', $.parseJSON(ret.seats, true).a.classes);
                 formValid($form);
 
                 $('.ui.modal').modal({

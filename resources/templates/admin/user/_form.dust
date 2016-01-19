@@ -21,7 +21,11 @@
             </div>
             <div class="field">
                 <label>会员等级</label>
-                <input type="text" name="level" placeholder="请选择会员等级" value="{level}">
+                <select name="level" class="ui fluid dropdown">
+                    <option value="001">非会员</option>
+                    <option value="002">待审核会员</option>
+                    <option value="003">会员</option>
+                </select>
             </div>
         </form>
     </div>

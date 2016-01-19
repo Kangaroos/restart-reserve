@@ -1,14 +1,14 @@
 define(['jquery', 'dust', '$script', '../vendor/_jquery.laravel-sms'], function($, dust, $script){
 
-    $('.members-tab').hammer().on('tap', function() {
+    $('.members-tab').on('click', function() {
         location.href = $(this).data('url');
     });
 
-    $('.non-members-tab').hammer().on('tap', function() {
+    $('.non-members-tab').on('click', function() {
         location.href = $(this).data('url');
     });
 
-    $('#postFormBtn').hammer().on('tap', function(e) {
+    $('#postFormBtn').on('click', function(e) {
         var $form = $('form');
 
         if($('input[name=login-type]').val() == "members") {

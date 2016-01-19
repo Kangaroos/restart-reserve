@@ -35,8 +35,9 @@
         <form class="sms-form">
             <input type="hidden" name="class_date" value="{{ date('m月d日',strtotime($reserve->courseSchedule->class_date)) }}（{{ $reserve->courseSchedule->week }}） {{ $reserve->courseSchedule->course->class_time_begin }}">
             <input type="hidden" name="order_no" value="{{ $reserve->order_no }}">
+            <input type="hidden" id="reserveId" value="{{ $reserve->id }}">
             <input type="hidden" name="course_name" value="{{ $reserve->courseSchedule->course->name }}">
-            @if(Auth::user()->level == "003")
+            @if(Auth::user()->level == "001")
             </form>
             <div class="tips">
                 * “恭喜您预约成功,请等待工作人员与您联系!”
@@ -44,7 +45,7 @@
             @else
                 <input type="tel" name="mobile" value="{{ $reserve->user->mobile }}" readonly>
                 <button type="button" class="send-otp">发短信</button>
-                <button type="button" class="cancel-reserve">取消{{ $reserve->isCancelTime() }}</button>
+                <button type="button" class="cancel-reserve" {{$reserve->isCancelTime()}}>取消</button>
             </form>
             <div class="tips">
                 * “请准时参加预约课程，若不能按时参加，请提前2个小时取消预约订单；若未取消订单，也未来参加预约课程，爽约次数达到3次，系统将自动关闭您的预约权限哦！”
@@ -56,7 +57,7 @@
 @section('end')
 @parent
 <script>
-    $script.ready(['bundle', 'material'], function(){
+    $script.ready(['bundle'], function(){
         $script(['//cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js'], function(){
             $script(['{{ asset('assets/webpack/mobile/courses/reserve-result.js')  }}']);
         });

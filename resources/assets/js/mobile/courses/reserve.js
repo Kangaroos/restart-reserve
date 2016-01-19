@@ -49,7 +49,7 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
     sc.get(seatMap.data('unavailable')).status('unavailable');
 
 
-    $('.btn-reserve').hammer().on('tap', function() {
+    $('.btn-reserve').on('click', function() {
         var $form = $('form');
 
         if($('#selected-seats').val() == "") {

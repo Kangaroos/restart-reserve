@@ -1,6 +1,6 @@
 define(['jquery', 'dust', '$script'], function($, dust, $script){
 
-    $('.date-tab .item').hammer().on('tap', function() {
+    $('.date-tab .item').on('click', function() {
         $('.date-tab .item').removeClass('active');
         $(this).addClass('active');
         var className = $(this).data('class');
@@ -12,7 +12,7 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
 
     var detailTmpl = require('../../../templates/mobile/courses/_detail.dust');
 
-    $('.course .button.detail').hammer().on('tap', function(e) {
+    $('.course .button.detail').on('click', function(e) {
         var courseDetail = $('.course-detail');
         if(courseDetail.length > 0) {
             courseDetail.remove();
@@ -24,7 +24,7 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
         dust.render(detailTmpl, course, function(err, result) {
             document.body.insertAdjacentHTML('beforeend', result);
 
-            $('.course-detail .close-icon').hammer().on('tap', function() {
+            $('.course-detail .close-icon').on('click', function() {
                 $('.course-detail').remove();
             })
         });

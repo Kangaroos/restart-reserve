@@ -38,8 +38,8 @@
             <tbody>
         @foreach($reserves as $reserve)
             <tr data-id="{{ $reserve->id }}">
-                <td>{{ $reserve->course->store->name }} {{ $reserve->course->classroom->name }}</td>
-                <td>{{ $reserve->course->name }}</td>
+                <td>{{ $reserve->courseSchedule->course->store->name }} {{ $reserve->courseSchedule->course->classroom->name }}</td>
+                <td>{{ $reserve->courseSchedule->course->name }}</td>
                 <td>{{ $reserve->seat_number }}</td>
                 <td>{{ $reserve->user->name }}</td>
                 <td>{{ $reserve->order_no }}</td>

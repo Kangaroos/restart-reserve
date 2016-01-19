@@ -24,8 +24,8 @@
             <li>非会员</li>
             @else
             <li>{{ Auth::user()->card_number }}</li>
-            <li>爽约次数: {{ Auth::user()->fails_to_perform }}</li>
             @endif
+            <li>爽约次数: {{ Auth::user()->fails_to_perform }}</li>
         </ul>
     </div>
     <div class="members-menu">

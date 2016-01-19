@@ -50,7 +50,6 @@ define(['jquery', 'dust', '$script'], function($, dust, $script) {
             document.body.insertAdjacentHTML('beforeend', result);
 
             var $form = $('#' + formId);
-
             formValid($form);
 
             $('.ui.modal').modal({
@@ -90,7 +89,7 @@ define(['jquery', 'dust', '$script'], function($, dust, $script) {
                 var $form = $('#' + formId);
 
                 formValid($form);
-
+                $('select[name=level]').dropdown('set selected', ret.level);
                 $('.ui.modal').modal({
                     closable  : false,
                     onDeny    : function(){

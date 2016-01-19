@@ -52,6 +52,6 @@ class Reserve extends Model
     public function isCancelTime() {
         $reserveDateTime = new Carbon(date('Y-m-d', strtotime($this->courseSchedule->attributes["class_date"]))." ".$this->courseSchedule->course->attributes["class_time_begin"]);
         $reserveDateTime = $reserveDateTime->subHours(2);
-        return Carbon::now()->diffInHours($reserveDateTime, false);
+        return Carbon::now()->diffInHours($reserveDateTime, false) <= 0?"disabled":"";
     }
 }
