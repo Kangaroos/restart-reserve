@@ -70,7 +70,7 @@
                 }, function(isConfirm) {
                     if (isConfirm) {
                         $.ajax({
-                            url: '/members/reserve/' + $('#reserveId').val() + "/cancel",
+                            url: '/reserves/' + $('#reserveId').val() + "/cancel",
                             method: 'PUT',
                             dataType: 'json'
                         }).done(function(ret) {
