@@ -33,7 +33,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['name', 'nickname', 'mobile', 'card_number', 'password'];
+    protected $fillable = ['name', 'nickname', 'mobile', 'card_number', 'password', 'status'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -60,5 +60,30 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function roles()
     {
         return $this->belongsToMany('Kodeine\Acl\Models\Eloquent\Role');
+    }
+
+    public function displayStatus() {
+        switch($this->attributes['status']) {
+            case 'active':
+                return '正常';
+                break;
+            case 'inactive':
+                return '失效';
+                break;
+        }
+    }
+
+    public function displayLevel() {
+        switch($this->attributes['level']) {
+            case '001':
+                return '非会员';
+                break;
+            case '002':
+                return '待审核会员';
+                break;
+            case '003':
+                return '会员';
+                break;
+        }
     }
 }

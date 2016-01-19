@@ -53,11 +53,11 @@
                             <td>{{ $user->mobile }}</td>
                             <td>{{ $user->card_number }}</td>
                             <td>{{ $user->fails_to_perform }}</td>
-                            <td>{{ $user->level }}</td>
-                            <td>{{ $user->status }}</td>
+                            <td>{{ $user->displayLevel() }}</td>
+                            <td>{{ $user->displayStatus() }}</td>
                             <td>{{ $user->created_at }}</td>
                             <td>
-                                @if ($user->status == 'inactive')
+                                @if ($user->level == '002')
                                     <div data-id="auditUserBtn" class="ui green button">审 核</div>
                                 @endif
                                 <div data-id="editUserBtn" class="ui blue button">编 辑</div>
@@ -81,6 +81,7 @@
                         <th>代用名</th>
                         <th>手机</th>
                         <th>爽约次数</th>
+                        <th>会员等级</th>
                         <th>状态</th>
                         <th>注册时间</th>
                         <th>操作</th>
@@ -93,7 +94,8 @@
                             <td>{{ $user->nickname }}</td>
                             <td>{{ $user->mobile }}</td>
                             <td>{{ $user->fails_to_perform }}</td>
-                            <td>{{ $user->status }}</td>
+                            <td>{{ $user->displayLevel() }}</td>
+                            <td>{{ $user->displayStatus() }}</td>
                             <td>{{ $user->created_at }}</td>
                             <td>
                                 <div data-id="editUserBtn" class="ui blue button">编 辑</div>

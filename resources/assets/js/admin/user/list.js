@@ -104,6 +104,35 @@ define(['jquery', 'dust', '$script'], function($, dust, $script) {
         });
     });
 
+
+    $('div[data-id="auditUserBtn"]').on('click', function(e) {
+        var tr = $(this).closest('tr'), userId = tr.data('id');
+
+        swal({
+            title: "提示",
+            text: "是否通过审核?",
+            type: "warning",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "确认",
+            cancelButtonText: "取消"
+        }, function(isConfirm){
+            if (isConfirm) {
+                $.ajax({
+                    url: ['/admin/users/',userId, '/audit'].join(''),
+                    type: 'PUT',
+                    dataType: 'json'
+                }).done(function(ret) {
+                    window.location.reload();
+                });
+            }
+        });
+
+
+    });
+
     $('div[data-id="deleteUserBtn"]').on('click', function(e) {
         var tr = $(this).closest('tr'),userId = tr.data('id');
 

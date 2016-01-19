@@ -17,6 +17,10 @@ class CourseSchedule extends Model
         return $this->belongsTo('App\Course');
     }
 
+    public function reserves() {
+        return $this->hasMany('App\Reserve');
+    }
+
     public function classDateTime()
     {
         $datetimeStr = "";
@@ -35,5 +39,14 @@ class CourseSchedule extends Model
 
     public function getClassDateAttribute() {
         return date('Y-m-d', strtotime($this->attributes['class_date']));
+    }
+
+    public function unavailable() {
+        $seats = array();
+        $reserves = $this->reserves;
+        foreach($reserves as $reserve) {
+            array_push($seats,$reserve->seat_number);
+        }
+        return json_encode($seats);
     }
 }

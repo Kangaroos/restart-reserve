@@ -23,7 +23,7 @@
             </div>
             <div id="legend"></div>
         </div>
-        <div id="seat-map" data-map="{{ $courseSchedule->course->classroom->seats_map }}" data-seats="{{ $courseSchedule->course->classroom->seats }}" data-unavailable="{{ $courseSchedule->course->unavailable() }}">
+        <div id="seat-map" data-map="{{ $courseSchedule->course->classroom->seats_map }}" data-seats="{{ $courseSchedule->course->classroom->seats }}" data-unavailable="{{ $courseSchedule->unavailable() }}">
             <div class="front">{{ $courseSchedule->course->classroom->name }}教练区</div>
         </div>
     </div>
@@ -39,7 +39,7 @@
 @section('end')
 @parent
 <script>
-    $script.ready(['bundle', 'material'], function(){
+    $script.ready(['bundle'], function(){
         $script(['{{ asset('assets/webpack/mobile/courses/reserve.js')  }}']);
     })
 </script>

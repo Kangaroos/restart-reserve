@@ -1,7 +1,6 @@
 define(['jquery', 'dust', '$script'], function($, dust, $script){
     require('../../../vendor/jQuery-Seat-Charts/_jquery.seat-charts.css');
     require('../../../vendor/jQuery-Seat-Charts/_jquery.seat-charts');
-    require('../../components/_toasts');
 
     var selectedSeats = $('#selected-seats');
 
@@ -54,7 +53,7 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
         var $form = $('form');
 
         if($('#selected-seats').val() == "") {
-            Materialize.toast('请选择一个位子！', 3000);
+            sweetAlert("出错啦...", "请选择一个位子", "error");
             return;
         }
 
@@ -63,7 +62,7 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
 
     var $errorMsg = $('#errorMsg');
     if($errorMsg.val() != 0) {
-        Materialize.toast($errorMsg.val(), 3000);
+        sweetAlert("出错啦...", $errorMsg.val(), "error");
         setTimeout(function(){
             location.href = $('#redirectUrl').val();
         }, 3000);

@@ -60,7 +60,7 @@ class AuthController extends Controller
         try {
             $user = User::where('mobile', $mobile)->firstOrFail();
 
-            if($user->status == "active") {
+            if($user->level != "002") {
                 $token = JWTAuth::fromUser($user);
 
                 $request->session()->put('jwt-token',$token);
@@ -72,8 +72,6 @@ class AuthController extends Controller
                 $response['success'] = false;
                 $response['error'] = "第一次使用,请联系锐思达工作人员,完成会员身份审核";
             }
-
-
         } catch(ModelNotFoundException $e) {
             $values = [
                 'name' => $name,
@@ -83,7 +81,7 @@ class AuthController extends Controller
 
             if($type == 'members') {
                 $values['card_number'] = $card_number;
-                $values['status'] = 'inactive';
+                $values['level'] = '002';
             }
 
             $user = User::create($values);
@@ -92,7 +90,7 @@ class AuthController extends Controller
 
             $user->assignRole($roleMember);
 
-            if($user->status == "active") {
+            if($user->level != "002") {
                 $token = JWTAuth::fromUser($user);
 
                 $request->session()->put('jwt-token',$token);

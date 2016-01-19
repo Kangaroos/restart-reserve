@@ -10,10 +10,13 @@ define(['jquery', 'dust', '$script', '../vendor/_jquery.laravel-sms'], function(
 
     $('#postFormBtn').hammer().on('tap', function(e) {
         var $form = $('form');
-        var cardNumber = $('input[name=card_number]').val();
-        if(!/^[A-Za-z]{2}[0-9]{6}$/i.test(cardNumber)) {
-            sweetAlert("出错啦...", "会员卡号格式不正确", "error");
-            return;
+
+        if($('input[name=login-type]').val() == "members") {
+            var cardNumber = $('input[name=card_number]').val();
+            if(!/^[A-Za-z]{2}[0-9]{6}$/i.test(cardNumber)) {
+                sweetAlert("出错啦...", "会员卡号格式不正确", "error");
+                return;
+            }
         }
 
         if($('input[name=name]').val() == "") {

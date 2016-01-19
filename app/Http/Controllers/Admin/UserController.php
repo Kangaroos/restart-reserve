@@ -16,11 +16,11 @@ class UserController extends Controller
         $orderColumn = $request->get('sort_up', $request->get('sort_down', 'created_at'));
         $direction   = $request->get('sort_up') ? 'asc' : 'desc' ;
 
-        $members = User::whereNotNull('card_number')->whereHas('roles', function ($query) {
+        $members = User::whereIn('level', ['003', '002'])->whereHas('roles', function ($query) {
             $query->where('slug', 'member');
         })->orderBy($orderColumn, $direction)->paginate(8);
 
-        $nonMembers = User::whereNull('card_number')->whereHas('roles', function ($query) {
+        $nonMembers = User::where('level', '001')->whereHas('roles', function ($query) {
             $query->where('slug', 'member');
         })->orderBy($orderColumn, $direction)->paginate(8);
 
@@ -43,6 +43,13 @@ class UserController extends Controller
 
         $user->save();
 
+        return response()->json(['id' => $user->id]);
+    }
+
+    public function audit(Request $request, $id){
+        $user = User::find($id);
+        $user->level = "003";
+        $user->save();
         return response()->json(['id' => $user->id]);
     }
 

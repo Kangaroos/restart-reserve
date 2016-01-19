@@ -20,9 +20,9 @@
         <div class="image">
             <img src="{{ asset('assets/images/white-block.png') }}">
             <div class="info">
-                <h5 class="title">{{ $reserve->course->name }}</h5>
-                <p>{{ $reserve->course->store->name }}</p>
-                <p>{{ $reserve->course->classroom->name }}</p>
+                <h5 class="title">{{ $reserve->courseSchedule->course->name }}</h5>
+                <p>{{ $reserve->courseSchedule->course->store->name }}</p>
+                <p>{{ $reserve->courseSchedule->course->classroom->name }}</p>
                 <p class="green">预约{{ date('m月d日',strtotime($reserve->courseSchedule->class_date)) }}（{{ $reserve->courseSchedule->week }}）</p>
                 <p>预约教练：{{ $reserve->courseSchedule->course->coach->name }}</p>
                 <p>会员卡号：{{ $reserve->user->card_number }}</p>
@@ -36,7 +36,7 @@
             <input type="hidden" name="class_date" value="{{ date('m月d日',strtotime($reserve->courseSchedule->class_date)) }}（{{ $reserve->courseSchedule->week }}） {{ $reserve->courseSchedule->course->class_time_begin }}">
             <input type="hidden" name="order_no" value="{{ $reserve->order_no }}">
             <input type="hidden" name="course_name" value="{{ $reserve->courseSchedule->course->name }}">
-            @if(empty(Auth::user()->card_number) === true)
+            @if(Auth::user()->level == "003")
             </form>
             <div class="tips">
                 * “恭喜您预约成功,请等待工作人员与您联系!”
@@ -44,7 +44,7 @@
             @else
                 <input type="tel" name="mobile" value="{{ $reserve->user->mobile }}" readonly>
                 <button type="button" class="send-otp">发短信</button>
-                <button type="button" class="cancel-reserve">取消</button>
+                <button type="button" class="cancel-reserve">取消{{ $reserve->isCancelTime() }}</button>
             </form>
             <div class="tips">
                 * “请准时参加预约课程，若不能按时参加，请提前2个小时取消预约订单；若未取消订单，也未来参加预约课程，爽约次数达到3次，系统将自动关闭您的预约权限哦！”

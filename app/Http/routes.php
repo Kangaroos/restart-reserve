@@ -67,6 +67,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
     Route::put('reserves/{id}/verify', ['uses' => 'ReserveController@verify']);
     Route::resource('reserves', 'ReserveController');
 
+    Route::put('users/{id}/audit', ['uses' => 'UserController@audit']);
     Route::get('users/export', ['uses' => 'UserController@exportExcel']);
     Route::resource('users', 'UserController');
 
