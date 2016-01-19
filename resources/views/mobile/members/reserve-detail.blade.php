@@ -56,7 +56,7 @@
     $script.ready(['bundle'], function(){
         $script(['//cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js'], function(){
             $('#qrcode').qrcode('{{ $reserve->order_no }}');
-            $('.cancel-reserve').hammer().on('tap', function() {
+            $('.cancel-reserve').on('click', function() {
                 swal({
                     title: "提示",
                     text: "是否取消预约课程?",
