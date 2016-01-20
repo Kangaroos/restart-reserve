@@ -20,14 +20,17 @@
             <i class="spy icon"></i> <b>教练管理</b>
         </a>
         <a class="item" href="{{ url('/admin/courses') }}">
-            <i class="student icon"></i> <b>课程管理</b>
+            <i class="student icon"></i> <b>发布课程</b>
+        </a>
+        <a class="item" href="{{ url('/admin/courses/list') }}">
+            <i class="student icon"></i> <b>课程列表</b>
         </a>
         <a class="item" href="{{ url('/admin/reserves') }}">
             <i class="call icon"></i> <b>预约管理</b>
         </a>
-        <a class="item" href="{{ url('/admin/roles') }}">
-            <i class="privacy icon"></i> <b>角色管理</b>
-        </a>
+        {{--<a class="item" href="{{ url('/admin/roles') }}">--}}
+            {{--<i class="privacy icon"></i> <b>角色管理</b>--}}
+        {{--</a>--}}
         {{--<a class="item" href="{{ url('/admin/permissions') }}">--}}
             {{--<i class="privacy icon"></i> <b>权限管理</b>--}}
         {{--</a>--}}
@@ -37,15 +40,16 @@
         </a>
         @endrole
 
-        @role('usermanager')
+        @role('assistant')
         <a class="item" href="{{ url('/admin/users') }}">
             <i class="user icon"></i> <b>会员管理</b>
         </a>
-        @endrole
-        @role('reservemanager')
         <a class="item" href="{{ url('/admin/reserves') }}">
             <i class="call icon"></i> <b>预约管理</b>
         </a>
+        @endrole
+        @role('reservemanager')
+
         @endrole
         {{--<a class="item" href="">--}}
             {{--<i class="database icon"></i> <b>数据管理</b>--}}
@@ -59,6 +63,9 @@
             <img src="{{ asset('assets/images/restart-logo.png') }}" alt="锐思达后台管理系统"/>
         </div>
         <div class="right menu">
+            <a id="changePwdBtn" href="#" class="ui item">
+                修改密码
+            </a>
             <a id="logoutAdminSystemBtn" href="{{ url('/admin/logout') }}" class="ui item">
                 登出
             </a>

@@ -13,6 +13,17 @@ use App\Course;
 
 class CourseController extends Controller
 {
+    public function list(Request $request) {
+
+        // 获取排序条件
+        $orderColumn = $request->get('sort_up', $request->get('sort_down', 'created_at'));
+        $direction   = $request->get('sort_up') ? 'asc' : 'desc' ;
+
+        $courseSchedules = CourseSchedule::paginate(8);
+
+        return view('admin.course.listdetail', compact('courseSchedules'));
+    }
+
     public function index(Request $request) {
 
         // 获取排序条件

@@ -22,17 +22,12 @@ class UserTableSeeder extends Seeder
             'password' => bcrypt('123456')
         ]);
 
-        $userManager = User::create([
-            'name' => '用户管理员',
+        $assistantManager = User::create([
+            'name' => 'OPAdmin',
             'mobile' => '13888888888',
             'password' => bcrypt('123456')
         ]);
 
-        $userReserveManager = User::create([
-            'name' => '预约管理员',
-            'mobile' => '13666666666',
-            'password' => bcrypt('123456')
-        ]);
 
         $roleAdmin = Role::create([
             'name' => 'Administrator',
@@ -40,16 +35,10 @@ class UserTableSeeder extends Seeder
             'description' => 'manage administration privileges'
         ]);
 
-        $roleRM = Role::create([
-            'name' => 'ReserveManager',
-            'slug' => 'reservemanager',
-            'description' => 'manage reserve'
-        ]);
-
-        $roleUM = Role::create([
-            'name' => 'UserManager',
-            'slug' => 'usermanager',
-            'description' => 'manage user'
+        $roleAssistant = Role::create([
+            'name' => 'Assistant',
+            'slug' => 'assistant',
+            'description' => 'assistant'
         ]);
 
         $roleMember = Role::create([
@@ -59,8 +48,7 @@ class UserTableSeeder extends Seeder
         ]);
 
         $user->assignRole($roleAdmin);
-        $userManager->assignRole($roleUM);
-        $userReserveManager->assignRole($roleRM);
+        $assistantManager->assignRole($roleAssistant);
 
 
     }

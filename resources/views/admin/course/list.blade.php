@@ -55,7 +55,7 @@
                 <td>{{ $course->description }}</td>
                 <td>{{ $course->needing_attention }}</td>
                 <td>
-                    <div data-id="publishCourseBtn" class="ui blue button">发 布</div>
+                    <div data-id="publishCourseBtn" class="ui blue button">排 课</div>
                     <div data-id="editCourseBtn" class="ui green button">编 辑</div>
                     <div data-id="deleteCourseBtn" class="ui red button">删 除</div>
                 </td>

@@ -1,4 +1,6 @@
 define(['jquery', 'dust', '$script'], function($, dust, $script) {
+    $('#reserveTab .item').tab();
+
     $('div[data-id="deleteReserveBtn"]').on('click', function(e) {
         var tr = $(this).closest('tr'),reserveId = tr.data('id');
         swal({

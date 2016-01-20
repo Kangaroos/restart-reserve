@@ -29,10 +29,10 @@ class Authenticate
                 return redirect()->guest('/auth/login?redirectTo='.urlencode($redirectTo));
             }
         } else {
-            $openid = $request->session()->get('openid');
-            if(empty($openid)) {
-                $this->weAuth->redirect($to = route('wechat.callback').'?redirectTo='.urlencode($redirectTo), $scope = 'snsapi_userinfo', $state = 'STATE');
-            }
+//            $openid = $request->session()->get('openid');
+//            if(empty($openid)) {
+//                $this->weAuth->redirect($to = route('wechat.callback').'?redirectTo='.urlencode($redirectTo), $scope = 'snsapi_userinfo', $state = 'STATE');
+//            }
         }
 
         return $next($request);

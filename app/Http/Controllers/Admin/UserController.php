@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\Guard;
 
 use App\User;
 use App\Excel\UserListExport;
@@ -69,5 +70,12 @@ class UserController extends Controller
             ));
             $sheet->fromModel(User::all(), null, 'A2', false, false);
         })->download('xlsx');
+    }
+
+    public function changePwd(Request $request, Guard $auth) {
+        $user = $auth->user();
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
+        return $user->id;
     }
 }

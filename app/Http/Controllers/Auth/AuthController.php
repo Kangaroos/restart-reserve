@@ -60,7 +60,7 @@ class AuthController extends Controller
         try {
             $user = User::where('mobile', $mobile)->firstOrFail();
 
-            if($user->level != "002") {
+            if($user->level != "002" && $user->level != "001") {
                 $token = JWTAuth::fromUser($user);
 
                 $request->session()->put('jwt-token',$token);
@@ -76,7 +76,8 @@ class AuthController extends Controller
             $values = [
                 'name' => $name,
                 'nickname' => $name,
-                'mobile' => $mobile
+                'mobile' => $mobile,
+                'level' => '001'
             ];
 
             if($type == 'members') {
@@ -90,7 +91,7 @@ class AuthController extends Controller
 
             $user->assignRole($roleMember);
 
-            if($user->level != "002") {
+            if($user->level != "002" && $user->level != "001") {
                 $token = JWTAuth::fromUser($user);
 
                 $request->session()->put('jwt-token',$token);

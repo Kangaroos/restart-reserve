@@ -14,10 +14,10 @@ class AdminController extends Controller {
 
     public function postLogin(Request $request) {
         $this->validate($request, [
-            'mobile' => 'required', 'password' => 'required',
+            'name' => 'required', 'password' => 'required',
         ]);
 
-        $credentials = $request->only('mobile', 'password');
+        $credentials = $request->only('name', 'password');
 
         if (Auth::attempt($credentials)) {
             return redirect()->intended('/admin');

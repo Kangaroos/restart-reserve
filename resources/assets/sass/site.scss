@@ -1,6 +1,11 @@
 @import "bourbon";
 @import "neat";
 
+#changePwdModal {
+  width: 300px;
+  margin: 0 0 0 -150px;
+}
+
 #sub-header {
   margin-top: 3.28571429em;
   border-radius: 0;

@@ -19,6 +19,52 @@ define(['jquery', 'dust', '$script'], function($, dust, $script){
         return JSON.stringify(obj);
     };
 
+    var formTmpl = require('../../../templates/admin/_pwdform.dust');
+
+    $('#changePwdBtn').on('click', function(e){
+        $('.ui.modals').remove();
+
+        dust.render(formTmpl, {
+            header:'修改密码',
+            saveText: '更 新',
+            backText: '关 闭',
+            modalId: 'changePwdModal'
+        }, function(err, result) {
+            document.body.insertAdjacentHTML('beforeend', result);
+
+            var changePwdModal = $('#changePwdModal');
+
+            changePwdModal.modal({
+                closeable: false,
+                allowMultiple: false,
+                onDeny: function() {
+                    changePwdModal.modal("show");
+                },
+                onApprove : function() {
+                    var password = $('#changePwdInput').val();
+                    if(password == "") {
+                        sweetAlert("出错啦...", "密码不能为空", "error");
+                        return false;
+                    }
+                    $.ajax({
+                        url: '/admin/changePwd',
+                        method: 'PUT',
+                        dataType: 'json',
+                        data: {
+                            password: password
+                        }
+                    }).done(function(ret) {
+                        changePwdModal.modal('hide');
+
+                    }).fail(function() {
+                        sweetAlert("出错啦...", "服务器君偷懒了，快去找管理员来修理他...", "error");
+                    });
+                    return false;
+                }
+            }).modal('show');
+        });
+    });
+
     $('#logoutAdminSystemBtn').on('click', function(e) {
         e.preventDefault();
         var href = $(this).attr('href');

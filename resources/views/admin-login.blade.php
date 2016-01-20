@@ -34,7 +34,7 @@
                     <div class="field">
                         <div class="ui left icon input">
                             <i class="user icon"></i>
-                            <input type="tel" name="mobile" placeholder="账号">
+                            <input type="tel" name="name" placeholder="账号">
                         </div>
                     </div>
                     <div class="field">

@@ -1,0 +1,16 @@
+<div id="{modalId}" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">{header}</div>
+    <div class="content">
+        <form class="ui form" action="{action}" method="{method}" id="{formId}">
+            <div class="field">
+                <label>密码</label>
+                <input type="text" id="changePwdInput" name="password" placeholder="请输入密码" value="{password}">
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <div class="ui blue approve button">{saveText}</div>
+        <div class="ui deny button">取 消</div>
+    </div>
+</div>

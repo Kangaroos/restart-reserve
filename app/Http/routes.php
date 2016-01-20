@@ -48,7 +48,7 @@ Route::group(['prefix' => 'wechat'], function () {
     Route::get('callback', ['as' => 'wechat.callback', 'uses' => 'WechatController@callback']);
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['admin.auth', 'acl'], 'is' => 'administrator|usermanager|reservemanager'], function() {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['admin.auth', 'acl'], 'is' => 'administrator|assistant'], function() {
     Route::get('stores/{id}/classrooms', 'StoreController@getClassroomsByID');
     Route::post('stores/cover/{id}', 'StoreController@updateCover');
     Route::resource('stores', 'StoreController');
@@ -58,6 +58,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
     Route::get('coaches/export', ['uses' => 'CoachController@exportExcel']);
     Route::resource('coaches', 'CoachController');
 
+    Route::get('courses/list', 'CourseController@list');
     Route::get('courses/{id}/schedules', 'CourseController@getCourseSchedules');
     Route::get('course/check', 'CourseController@checkCourse');
     Route::post('courses/{id}/schedules', 'CourseController@saveCourseSchedules');
@@ -70,6 +71,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
 
     Route::put('users/{id}/audit', ['uses' => 'UserController@audit']);
     Route::get('users/export', ['uses' => 'UserController@exportExcel']);
+    Route::put('changePwd', ['uses' => 'UserController@changePwd']);
     Route::resource('users', 'UserController');
 
     Route::resource('roles', 'RoleController');
