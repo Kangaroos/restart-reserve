@@ -13,13 +13,13 @@ use App\Course;
 
 class CourseController extends Controller
 {
-    public function list(Request $request) {
+    public function scheduleList(Request $request) {
 
         // 获取排序条件
         $orderColumn = $request->get('sort_up', $request->get('sort_down', 'created_at'));
         $direction   = $request->get('sort_up') ? 'asc' : 'desc' ;
 
-        $courseSchedules = CourseSchedule::paginate(8);
+        $courseSchedules = CourseSchedule::orderBy($orderColumn, $direction)->paginate(8);
 
         return view('admin.course.listdetail', compact('courseSchedules'));
     }

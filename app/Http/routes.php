@@ -58,7 +58,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
     Route::get('coaches/export', ['uses' => 'CoachController@exportExcel']);
     Route::resource('coaches', 'CoachController');
 
-    Route::get('courses/list', 'CourseController@list');
+    Route::get('courses/list', 'CourseController@scheduleList');
     Route::get('courses/{id}/schedules', 'CourseController@getCourseSchedules');
     Route::get('course/check', 'CourseController@checkCourse');
     Route::post('courses/{id}/schedules', 'CourseController@saveCourseSchedules');
